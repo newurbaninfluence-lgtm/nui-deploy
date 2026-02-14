@@ -1193,6 +1193,11 @@ to{opacity:1;transform:translateY(0);}
 .success-detail-label{color:rgba(255,255,255,0.5);font-size:14px;}
 .success-detail-value{font-weight:700;color:#fff;font-size:14px;}
 .scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#ff0000,#cc0000);z-index:9999;width:0%;transition:width 0.1s linear;pointer-events:none;}</style>
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="US-MI">
+    <meta name="geo.placename" content="Detroit, Michigan">
+    <meta name="geo.position" content="42.3314;-83.0458">
+    <meta name="ICBM" content="42.3314, -83.0458">
 </head>
 <body>
  <div class="scroll-progress" id="scrollProgress"></div>
@@ -12834,7 +12839,12 @@ function closeInvoiceModal() { document.getElementById('invoiceModal').classList
 function printInvoice() {
     const content = document.getElementById('invoicePrint').innerHTML;
     const win = window.open('', '', 'width=800,height=600');
-    win.document.write(`<html><head><title>Invoice</title><style>body{font-family:Inter,sans-serif;padding:40px;}.invoice-preview{max-width:700px;margin:0 auto;}.invoice-header{display:flex;justify-content:space-between;margin-bottom:32px;padding-bottom:24px;border-bottom:2px solid #000;}.invoice-logo{font-size:24px;font-weight:800;color:#ff0000;}.invoice-title{font-size:32px;font-weight:700;text-align:right;}.invoice-meta{font-size:13px;color:#666;text-align:right;}.invoice-parties{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:32px;}.invoice-party h4{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}.invoice-table{width:100%;border-collapse:collapse;margin-bottom:24px;}.invoice-table th{text-align:left;padding:12px;border-bottom:2px solid #000;font-size:12px;text-transform:uppercase;}.invoice-table td{padding:12px;border-bottom:1px solid #e5e5e5;}.invoice-total{text-align:right;font-size:24px;font-weight:700;}</style></head><body>${content}</body></html>`);
+    win.document.write(`<html><head><title>Invoice</title><style>body{font-family:Inter,sans-serif;padding:40px;}.invoice-preview{max-width:700px;margin:0 auto;}.invoice-header{display:flex;justify-content:space-between;margin-bottom:32px;padding-bottom:24px;border-bottom:2px solid #000;}.invoice-logo{font-size:24px;font-weight:800;color:#ff0000;}.invoice-title{font-size:32px;font-weight:700;text-align:right;}.invoice-meta{font-size:13px;color:#666;text-align:right;}.invoice-parties{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:32px;}.invoice-party h4{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}.invoice-table{width:100%;border-collapse:collapse;margin-bottom:24px;}.invoice-table th{text-align:left;padding:12px;border-bottom:2px solid #000;font-size:12px;text-transform:uppercase;}.invoice-table td{padding:12px;border-bottom:1px solid #e5e5e5;}.invoice-total{text-align:right;font-size:24px;font-weight:700;}</style>    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="US-MI">
+    <meta name="geo.placename" content="Detroit, Michigan">
+    <meta name="geo.position" content="42.3314;-83.0458">
+    <meta name="ICBM" content="42.3314, -83.0458">
+</head><body>${content}</body></html>`);
     win.document.close();
     win.print();
 }
@@ -22457,6 +22467,11 @@ function downloadBrandGuidePackage(id) {
             font-size: 12px;
         }
  </style>
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="US-MI">
+    <meta name="geo.placename" content="Detroit, Michigan">
+    <meta name="geo.position" content="42.3314;-83.0458">
+    <meta name="ICBM" content="42.3314, -83.0458">
 </head>
 <body>
  <div class="container">
@@ -25308,6 +25323,11 @@ function downloadInvoice(id) {
                 .notes { margin-top: 32px; padding-top: 16px; border-top: 1px solid #eee; }
                 @media print { body { padding: 20px; } }
 </style>
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="US-MI">
+    <meta name="geo.placename" content="Detroit, Michigan">
+    <meta name="geo.position" content="42.3314;-83.0458">
+    <meta name="ICBM" content="42.3314, -83.0458">
 </head>
 <body>
 <div class="header">
@@ -27660,6 +27680,11 @@ function generateEmailHTML(template, clientData) {
 <head>
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="US-MI">
+    <meta name="geo.placename" content="Detroit, Michigan">
+    <meta name="geo.position" content="42.3314;-83.0458">
+    <meta name="ICBM" content="42.3314, -83.0458">
 </head>
 <body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: 'Helvetica Neue', Arial, sans-serif;">
  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f4f4; padding: 40px 20px;">
