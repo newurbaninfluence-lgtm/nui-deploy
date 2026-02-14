@@ -3,7 +3,7 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>New Urban Influence | Detroit Branding Agency — Logo Design & Brand Identity from $1,500</title>
+ <title>New Urban Influence | Detroit Branding Agency</title>
 
  <!-- ONE-TIME CACHE BUST: v4 — kills old service workers on Safari/mobile -->
  <!-- Does NOT clear portfolio or site image data (only SW caches) -->
@@ -44,7 +44,7 @@
  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
 
     <!-- SEO Meta Tags -->
- <meta name="description" content="Detroit branding agency for small businesses and startups. Professional brand identity packages from $1,500 — logo design, packaging, social media templates, brand guidelines. Payment plans available. 4.9★ rated with 28+ reviews. Free consultation. Serving Metro Detroit, Southfield, Royal Oak, Ann Arbor and all of Michigan.">
+ <meta name="description" content="Detroit branding agency for small businesses and startups. Brand identity packages from $1,500. Logo design, web, packaging, and print.">
  <meta name="keywords" content="branding agency detroit, logo design detroit, brand identity detroit, graphic design agency detroit, detroit creative agency, michigan branding agency, affordable branding packages, small business branding detroit, packaging design detroit, logo design cost michigan, branding packages small business, print design detroit, banner design detroit, yard signs detroit, vinyl decals detroit, social media templates detroit, brand guidelines detroit, detroit graphic design, branding near me, logo designer near me, best branding agency detroit michigan, branding agency southfield, branding agency royal oak, branding agency ann arbor">
  <meta name="author" content="New Urban Influence">
  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -665,7 +665,7 @@
  function loadGoogleIdentity(){if(window.google&&window.google.accounts)return Promise.resolve();return new Promise(function(r){var s=document.createElement('script');s.src='https://accounts.google.com/gsi/client';s.onload=r;document.head.appendChild(s);});}
  </script>
  <style>*{margin:0;padding:0;box-sizing:border-box;}:root{--black:#000000;--dark:#0a0a0a;--white:#ffffff;--gray:#888888;--gray-light:#f5f5f5;--gray-200:#e5e5e5;--gray-400:#a3a3a3;--gray-600:#525252;--red:#ff0000;--red-hover:#cc0000;--green:#10b981;--yellow:#f59e0b;--blue:#3b82f6;--admin-bg:#0a0a0a;--admin-bg-secondary:#111111;--admin-text:#ffffff;--admin-text-muted:#888888;--admin-card:#1a1a1a;--admin-card-hover:#252525;--admin-border:rgba(255,255,255,0.1);--admin-input-bg:#1a1a1a;--admin-sidebar:#0a0a0a;--admin-header:#0a0a0a;}:root.light-mode{--admin-bg:#f5f5f5;--admin-bg-secondary:#ffffff;--admin-text:#0a0a0a;--admin-text-muted:#666666;--admin-card:#ffffff;--admin-card-hover:#f0f0f0;--admin-border:rgba(0,0,0,0.1);--admin-input-bg:#ffffff;--admin-sidebar:#ffffff;--admin-header:#ffffff;}
-body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}.faq-open > div:last-child{max-height:500px !important;}
 .view{display:none;}
 .view.active{display:block;}
 .nav{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:20px 48px;z-index:1000;background:rgba(0,0,0,0.95);backdrop-filter:blur(10px);}
@@ -2182,7 +2182,7 @@ async function resolveImageSrc(ref, imgElement) {
 
 // Resolve all idb:// images on the page after a panel renders
 function resolveAllImages() {
-    // Resolve <img loading="lazy" data-idb-src="idb://..."> elements
+    // Resolve <img alt="NUI portfolio work" loading="lazy" data-idb-src="idb://..."> elements
     document.querySelectorAll('img[data-idb-src]').forEach(async img => {
         const ref = img.getAttribute('data-idb-src');
         // Skip invalid refs
@@ -2627,7 +2627,7 @@ async function sendEmailNotification(to, subject, body) {
                 subject: subject,
                 html: `<div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">
 <div style="background: linear-gradient(135deg, #e63946, #ff6b6b); padding: 24px; text-align: center;">
-<h1 style="margin: 0; font-size: 20px; color: #fff;">${subject}</h1>
+<h2 style="margin: 0; font-size: 20px; color: #fff;">${subject}</h2>
 </div>
 <div style="padding: 32px;">
 <p style="color: #ccc; font-size: 15px; line-height: 1.6;">${body}</p>
@@ -2856,6 +2856,7 @@ function getFooterHTML() {
 <a href="/services/brand-identity-packages-detroit" onclick="event.preventDefault(); showView('services');">Pricing</a>
 <a href="/contact" onclick="event.preventDefault(); showView('intake');">Contact</a>
 <a href="/portal" onclick="event.preventDefault(); showView('portal');">Client Portal</a>
+<a href="/#faq" onclick="event.preventDefault(); document.getElementById('faq')?.scrollIntoView({behavior:'smooth'});">FAQ</a>
 </div>
 
             <!-- Resources -->
@@ -3524,6 +3525,168 @@ function loadHomeView() {
 </div>
 </div>
 </section>
+<!-- ==================== FAQ SECTION (Visible for Google Crawlers + Users) ==================== -->
+<section class="section dark" id="faq" itemscope itemtype="https://schema.org/FAQPage" style="padding: 80px 0; background: #0a0a0a; border-top: 1px solid rgba(255,255,255,0.06);">
+<div style="max-width: 800px; margin: 0 auto; padding: 0 24px;">
+<div style="text-align: center; margin-bottom: 48px;">
+<p style="font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: var(--red); font-weight: 600; margin-bottom: 12px;">GOT QUESTIONS?</p>
+<h2 style="font-size: clamp(32px, 5vw, 48px); font-weight: 800; color: #fff; margin: 0; line-height: 1.1;">FREQUENTLY <span style="color: var(--red);">ASKED</span></h2>
+<p style="color: rgba(255,255,255,0.5); margin-top: 16px; font-size: 15px;">Everything you need to know about working with Detroit's top-rated branding agency.</p>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '−' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">What is New Urban Influence?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">New Urban Influence (NUI) is a Detroit-based creative agency specializing in brand identity design, web design, and digital marketing. Founded to help small businesses and startups build professional, competitive brands, NUI offers full branding packages starting at $1,500 including logo design, color systems, typography, social media templates, and brand guidelines. They serve clients throughout Detroit, Southeast Michigan, and nationwide.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '−' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">What services does New Urban Influence offer?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">New Urban Influence offers three main branding packages: Brand Kit ($1,500 flat rate) for startups and new businesses, Service Business Brand Identity ($3,500+) for consultants, agencies, and service providers, and Product Brand Identity ($4,500+) for businesses selling physical products. Additional services include logo design ($500), business card design ($150), social media templates ($300), print design and printing (banners, yard signs, business cards, vehicle magnets, postcards, acrylic signs, Dibond panels), packaging design ($600/SKU), and brand guidelines documentation ($400).</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '−' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">How much does branding cost in Detroit?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">In Detroit, professional branding packages at New Urban Influence range from $1,500 to $6,000+. The Brand Kit starts at $1,500 (logo, colors, typography, social templates), Service Business Brand Identity starts at $3,500, and Product Brand Identity starts at $4,500. Individual services like logo design start at $500. Payment plans are available including pay-in-full (5% discount), 50/25/25 split, or 3 monthly payments.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '−' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">How much does a logo design cost?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">At New Urban Influence, standalone logo design starts at $500 and includes a primary logo, secondary logo variation, icon/mark version, and all file formats (PNG, SVG, PDF). For a complete brand identity that includes the logo plus color palette, typography, social media templates, and brand guidelines, packages start at $1,500.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '−' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">How long does a branding project take?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">At New Urban Influence, most branding projects take 2 to 4 weeks depending on complexity. The Brand Kit (starter package) typically completes in 7-10 business days, while comprehensive Service and Product Brand Identity packages take 10-21 business days. Rush delivery is available for an additional fee. Every project follows a structured process: discovery call, strategy, initial concepts, revisions, and final delivery with all files and brand guidelines.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '−' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">Do you offer free consultations?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">Yes, New Urban Influence offers free strategy consultations for every potential client. During the call, they discuss your business goals, target audience, competitive landscape, and branding needs. You'll receive a custom pricing estimate after the consultation with no obligation to proceed. You can book directly through the website at newurbaninfluence.com.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '−' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">What is the best branding agency in Detroit?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">New Urban Influence is one of Detroit's top-rated creative agencies with a 4.9-star rating across 28+ reviews. They specialize in helping small businesses and startups build professional brand identities at accessible price points starting at $1,500. What sets them apart is their strategic approach to branding, transparent flat-rate pricing, payment plans, and a dedicated client portal for real-time project tracking.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '−' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">What payment options are available?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">New Urban Influence offers flexible payment options for all branding packages: pay in full and receive a 5% discount, split payments 50/25/25, or choose 3 monthly installments. They accept credit cards, debit cards, and bank transfers. No one should have to delay building their brand because of budget — payment plans make professional branding accessible.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '\u2212' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">Do you work with businesses outside Detroit?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">Yes! While New Urban Influence is based in Detroit, they serve clients nationwide. Most of the branding process is handled remotely through their online client portal, video consultations, and digital proof approvals. They work with businesses in Ann Arbor, Southfield, Troy, Royal Oak, and across Michigan, as well as clients in other states. Local clients can also meet in person for strategy sessions.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '\u2212' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">What file formats will I receive for my logo and branding?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">Every NUI branding package includes your logo and brand assets in all major file formats: PNG (transparent background), SVG (scalable vector), PDF (print-ready), and high-resolution JPG. You'll also receive a complete brand guidelines document, social media templates sized for Instagram, Facebook, TikTok, and LinkedIn, plus a brand asset folder organized for easy access.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '\u2212' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">Can I see examples of your branding work?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">Absolutely. Visit the NUI portfolio page to see completed branding projects across restaurants, coaching businesses, art brands, and more. Featured case studies include Good Cakes and Bakes, Detroit Canvas Co., Motor City Bistro, and Ascend Coaching Group. Each case study shows the before-and-after transformation along with results achieved.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '\u2212' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">What industries does New Urban Influence specialize in?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">New Urban Influence works with businesses across many industries, with particular strength in restaurants and food service, beauty and wellness, professional services, coaching and consulting, retail and e-commerce, cannabis brands, and creative businesses. They understand the unique branding needs of each industry and tailor their approach accordingly.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '\u2212' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">How many logo concepts will I receive?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">NUI provides 2-3 unique logo concepts during the initial design phase based on your brand strategy and discovery call insights. Each concept explores a different creative direction. After you select your preferred direction, they refine it through unlimited revisions until you're completely satisfied. The final logo includes primary, secondary, and icon variations.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '\u2212' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">Do you offer web design services?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">Yes, New Urban Influence offers custom web design starting at $3,500. Websites are built mobile-first, SEO-optimized, and designed to convert visitors into customers. Services include custom design, development, hosting setup, domain configuration, SSL security, and Google Analytics integration. They also offer website maintenance packages for ongoing support.</div>
+</div>
+</div>
+
+<div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; margin-bottom: 8px; overflow: hidden;">
+<button onclick="this.parentElement.classList.toggle('faq-open'); this.querySelector('.faq-icon').textContent = this.parentElement.classList.contains('faq-open') ? '\u2212' : '+';" style="width: 100%; padding: 20px 24px; background: none; border: none; color: #fff; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit;">
+<span itemprop="name">How do I get started with New Urban Influence?</span>
+<span class="faq-icon" style="color: #e11d48; font-size: 20px; margin-left: 16px;">+</span>
+</button>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 24px;">
+<div itemprop="text" style="padding: 0 0 20px 0; color: #aaa; font-size: 14px; line-height: 1.7;">Getting started is simple: book a free strategy call through the website at newurbaninfluence.com or call (248) 487-8747. During the call, you'll discuss your business, goals, and branding needs. After the consultation, you'll receive a custom proposal with pricing. Once approved, NUI kicks off your project with a discovery questionnaire and brand strategy session within 48 hours.</div>
+</div>
+</div>
+
+</div>
+</section>
+
 <section class="cta-section" id="contact">
 <h2>READY TO<br>DOMINATE?</h2>
 <p>Stop playing small. Let's build a brand that demands attention and drives real revenue.</p>
@@ -3553,7 +3716,7 @@ function loadAboutView() {
     `).join('');
 
     document.getElementById('aboutView').innerHTML = `
-<section class="about-hero"><div class="hero-content"><h1>About <span>Us</span></h1><p>We're a Detroit-rooted creative agency crafting bold brands and digital experiences for visionaries who refuse to blend in.</p></div></section>
+<section class="about-hero"><div class="hero-content"><h2>About <span>Us</span></h2><p>We're a Detroit-rooted creative agency crafting bold brands and digital experiences for visionaries who refuse to blend in.</p></div></section>
 <section class="section dark">
 <div class="story-section">
 <div class="story-content">
@@ -3686,7 +3849,7 @@ function loadServicesView() {
 </style>
 
 <section class="section dark" style="padding-top: 160px; text-align: center;">
-<h1 class="section-title">SERVICE <span class="red">PACKAGES</span></h1>
+<h2 class="section-title">SERVICE <span class="red">PACKAGES</span></h2>
 <p class="section-subtitle">Comprehensive branding solutions designed for product-based and service-based businesses. Every deliverable comes with clear direction on how to use it.</p>
 </section>
 
@@ -7460,14 +7623,14 @@ function saveBlogPosts() { localStorage.setItem('nui_blog_posts', JSON.stringify
 function loadAdminBlogPanel() {
     document.getElementById('adminBlogPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">📝 Blog Manager</h1>
+<h2 class="panel-title">📝 Blog Manager</h2>
 <p class="panel-subtitle">Create, edit, and manage your blog posts</p>
 </div>
 
         <!-- Author / Blog Logo -->
 <div style="background: #111; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px;">
 <div id="blogAuthorPreview" style="width: 64px; height: 64px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; overflow: hidden; color: #fff; font-weight: 700; font-size: 24px; flex-shrink: 0; cursor: pointer;" onclick="document.getElementById('blogAuthorUpload').click()" title="Click to upload blog logo/icon">
-                ${blogAuthorImage ? '<img loading="lazy" src="' + blogAuthorImage + '" style="width:100%;height:100%;object-fit:cover;">' : 'F'}
+                ${blogAuthorImage ? '<img alt="Blog author photo" loading="lazy" src="' + blogAuthorImage + '" style="width:100%;height:100%;object-fit:cover;">' : 'F'}
 </div>
 <div style="flex: 1;">
 <div style="font-weight: 600; color: #fff; margin-bottom: 4px;">Blog Author Image / Logo</div>
@@ -7490,7 +7653,7 @@ function loadAdminBlogPanel() {
             ${blogPosts.map((post, i) => `
 <div style="background: #111; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: center;">
 <div style="width: 80px; height: 50px; border-radius: 8px; overflow: hidden; background: #1a1a1a; flex-shrink: 0;">
-                        ${post.image ? '<img loading="lazy" src="' + post.image + '" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'">' : ''}
+                        ${post.image ? '<img alt="Blog post featured image" loading="lazy" src="' + post.image + '" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'">' : ''}
 </div>
 <div style="flex: 1; min-width: 0;">
 <div style="font-weight: 600; color: #fff; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${post.title}</div>
@@ -7746,7 +7909,7 @@ function loadBlogView() {
 <div id="blogList">
 <section class="blog-hero">
 <div class="blog-hero-content">
-<h1>THE <span>INFLUENCE</span> BLOG</h1>
+<h2>THE <span>INFLUENCE</span> BLOG</h2>
 <p>Insights, strategies, and real talk about building brands that dominate. No fluff, just actionable advice.</p>
 </div>
 </section>
@@ -7823,7 +7986,7 @@ function showBlogPost(postId) {
 <article class="blog-post">
 <a class="blog-post-back" onclick="closeBlogPost()">← Back to Blog</a>
 <span class="blog-post-category">${post.category}</span>
-<h1 class="blog-post-title">${post.title}</h1>
+<h2 class="blog-post-title">${post.title}</h2>
 <div class="blog-post-meta">
 <div class="blog-post-author">
 <div class="blog-post-author-img" style="${!post.authorImage ? 'background: var(--red); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 20px;' : ''}">${post.authorImage ? '<img loading="lazy" src="' + post.authorImage + '" alt="' + post.author + '" onerror="this.style.display=\'none\';this.parentElement.style.background=\'var(--red)\';this.parentElement.style.display=\'flex\';this.parentElement.style.alignItems=\'center\';this.parentElement.style.justifyContent=\'center\';this.parentElement.style.color=\'#fff\';this.parentElement.style.fontWeight=\'700\';this.parentElement.style.fontSize=\'20px\';this.parentElement.textContent=\'' + (post.author || 'N').charAt(0) + '\'">' : (post.author || 'N').charAt(0)}</div>
@@ -8519,7 +8682,7 @@ async function confirmMeeting() {
                         html: `
 <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #ffffff; border-radius: 16px; overflow: hidden;">
 <div style="background: linear-gradient(135deg, #dc2626, #991b1b); padding: 40px; text-align: center;">
-<h1 style="margin: 0; font-size: 28px; color: #fff;">Welcome to NUI</h1>
+<h2 style="margin: 0; font-size: 28px; color: #fff;">Welcome to NUI</h2>
 <p style="color: #fca5a5; margin-top: 8px;">Detroit's Premier Creative Agency</p>
 </div>
 <div style="padding: 32px;">
@@ -9046,14 +9209,14 @@ let portfolioAssetCategory = 'primaryLogo';
 function loadAdminPortfolioPanel() {
     document.getElementById('adminPortfolioPanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-<h1 style="font-size: 28px; font-weight: 700;">Portfolio Case Studies</h1>
+<h2 style="font-size: 28px; font-weight: 700;">Portfolio Case Studies</h2>
 <button onclick="addNewPortfolioCase()" class="btn-cta">+ Add Case Study</button>
 </div>
 <div class="card-grid">
             ${portfolioData.map(p => `
 <div class="client-card" style="cursor: pointer;" onclick="editPortfolioCase('${p.id}')">
 <div class="client-card-header" style="background: linear-gradient(135deg, ${p.colors[0]}, ${p.colors[1]});">
-<img loading="lazy" src="${(p.assets?.primaryLogo || p.img) && !(p.assets?.primaryLogo || p.img).startsWith('idb://') ? (p.assets?.primaryLogo || p.img) : ''}" data-idb-src="${p.assets?.primaryLogo || p.img || ''}" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;">
+<img alt="Client project logo" loading="lazy" src="${(p.assets?.primaryLogo || p.img) && !(p.assets?.primaryLogo || p.img).startsWith('idb://') ? (p.assets?.primaryLogo || p.img) : ''}" data-idb-src="${p.assets?.primaryLogo || p.img || ''}" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover;">
 </div>
 <div class="client-card-body">
 <div class="client-card-name">${p.name}</div>
@@ -9096,7 +9259,7 @@ function renderPortfolioEditor() {
 <div class="form-section" style="margin-top: 24px;">
 <div class="form-section-title">Hero Banner Image (21:9 Full Width)</div>
 <div style="aspect-ratio: 21/9; border: 2px dashed #ddd; border-radius: 16px; overflow: hidden; background: linear-gradient(135deg, ${p.colors[0]} 0%, ${p.colors[1]} 100%); position: relative;">
-                            ${p.img ? `<img loading="lazy" src="${!p.img.startsWith('idb://') ? p.img : ''}" data-idb-src="${p.img}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;">` : ''}
+                            ${p.img ? `<img alt="Portfolio project image" loading="lazy" src="${!p.img.startsWith('idb://') ? p.img : ''}" data-idb-src="${p.img}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;">` : ''}
 <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
 <div style="font-size: 32px; font-weight: 900; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">${p.name}</div>
 <input type="file" id="heroImageUpload" style="display: none;" onchange="uploadPortfolioHero('${p.id}', this)">
@@ -9114,7 +9277,7 @@ function renderPortfolioEditor() {
 <div style="aspect-ratio: 1/1; border: 2px dashed #ddd; border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; background: #fafafa;">
 <div style="font-size: 11px; color: #888; padding: 16px; background: #f0f0f0; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; text-align: center;">Primary Logo</div>
 <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px;">
-                                    ${p.assets?.primaryLogo ? `<img loading="lazy" src="${!p.assets.primaryLogo.startsWith('idb://') ? p.assets.primaryLogo : ''}" data-idb-src="${p.assets.primaryLogo}" style="max-height: 100%; max-width: 100%; object-fit: contain;">` : '<div style="color: #ccc; font-size: 13px;">No logo</div>'}
+                                    ${p.assets?.primaryLogo ? `<img alt="Client primary logo" loading="lazy" src="${!p.assets.primaryLogo.startsWith('idb://') ? p.assets.primaryLogo : ''}" data-idb-src="${p.assets.primaryLogo}" style="max-height: 100%; max-width: 100%; object-fit: contain;">` : '<div style="color: #ccc; font-size: 13px;">No logo</div>'}
 </div>
 <div style="padding: 16px; background: #f0f0f0; text-align: center;">
 <input type="file" id="primaryLogoUpload" style="display: none;" onchange="uploadPortfolioAsset('${p.id}', 'primaryLogo', this)">
@@ -9124,7 +9287,7 @@ function renderPortfolioEditor() {
 <div style="aspect-ratio: 1/1; border: 2px dashed #ddd; border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; background: #fafafa;">
 <div style="font-size: 11px; color: #888; padding: 16px; background: #f0f0f0; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; text-align: center;">Secondary Logo</div>
 <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px;">
-                                    ${p.assets?.secondaryLogo ? `<img loading="lazy" src="${!p.assets.secondaryLogo.startsWith('idb://') ? p.assets.secondaryLogo : ''}" data-idb-src="${p.assets.secondaryLogo}" style="max-height: 100%; max-width: 100%; object-fit: contain;">` : '<div style="color: #ccc; font-size: 13px;">No logo</div>'}
+                                    ${p.assets?.secondaryLogo ? `<img alt="Client secondary logo" loading="lazy" src="${!p.assets.secondaryLogo.startsWith('idb://') ? p.assets.secondaryLogo : ''}" data-idb-src="${p.assets.secondaryLogo}" style="max-height: 100%; max-width: 100%; object-fit: contain;">` : '<div style="color: #ccc; font-size: 13px;">No logo</div>'}
 </div>
 <div style="padding: 16px; background: #f0f0f0; text-align: center;">
 <input type="file" id="secondaryLogoUpload" style="display: none;" onchange="uploadPortfolioAsset('${p.id}', 'secondaryLogo', this)">
@@ -9134,7 +9297,7 @@ function renderPortfolioEditor() {
 <div style="aspect-ratio: 1/1; border: 2px dashed #ddd; border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; background: #fafafa;">
 <div style="font-size: 11px; color: #888; padding: 16px; background: #f0f0f0; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; text-align: center;">Icon / Logo Mark</div>
 <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px;">
-                                    ${p.assets?.iconMark ? `<img loading="lazy" src="${!p.assets.iconMark.startsWith('idb://') ? p.assets.iconMark : ''}" data-idb-src="${p.assets.iconMark}" style="max-height: 100%; max-width: 100%; object-fit: contain;">` : '<div style="color: #ccc; font-size: 13px;">No icon</div>'}
+                                    ${p.assets?.iconMark ? `<img alt="Client icon mark" loading="lazy" src="${!p.assets.iconMark.startsWith('idb://') ? p.assets.iconMark : ''}" data-idb-src="${p.assets.iconMark}" style="max-height: 100%; max-width: 100%; object-fit: contain;">` : '<div style="color: #ccc; font-size: 13px;">No icon</div>'}
 </div>
 <div style="padding: 16px; background: #f0f0f0; text-align: center;">
 <input type="file" id="iconMarkUpload" style="display: none;" onchange="uploadPortfolioAsset('${p.id}', 'iconMark', this)">
@@ -9167,7 +9330,7 @@ function renderPortfolioEditor() {
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
                             ${(p.assets?.mockups || []).map((m, i) => `
 <div style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
-                                    ${m.includes('video') || m.match(/\.(mp4|webm|mov|ogg)$/i) ? `<video src="${!m.startsWith('idb://') ? m : ''}" data-idb-src="${m}" autoplay muted loop playsinline style="width: 100%; aspect-ratio: 16/9; object-fit: cover;"></video>` : `<img loading="lazy" src="${!m.startsWith('idb://') ? m : ''}" data-idb-src="${m}" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;">`}
+                                    ${m.includes('video') || m.match(/\.(mp4|webm|mov|ogg)$/i) ? `<video src="${!m.startsWith('idb://') ? m : ''}" data-idb-src="${m}" autoplay muted loop playsinline style="width: 100%; aspect-ratio: 16/9; object-fit: cover;"></video>` : `<img alt="Project mockup image" loading="lazy" src="${!m.startsWith('idb://') ? m : ''}" data-idb-src="${m}" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;">`}
 <div style="position: absolute; bottom: 12px; left: 12px; background: rgba(0,0,0,0.7); color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase;">${m.includes('video') || m.match(/\.(mp4|webm|mov|ogg)$/i) ? '▶ Video' : 'Image'} ${i+1}</div>
 <button onclick="removePortfolioMockup('${p.id}', ${i})" style="position: absolute; top: 12px; right: 12px; background: #dc2626; color: #fff; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; font-size: 16px;">×</button>
 </div>
@@ -9340,7 +9503,7 @@ function deletePortfolioCase(id) {
 function loadAdminAboutPanel() {
     document.getElementById('adminAboutPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">📄 About Page Settings</h1>
+<h2 class="panel-title">📄 About Page Settings</h2>
 <p class="panel-subtitle">Manage your team members and story section</p>
 </div>
 
@@ -9348,7 +9511,7 @@ function loadAdminAboutPanel() {
 <div class="form-section-title">Story Section Image</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;">
 <div style="aspect-ratio:4/5;background:rgba(255,255,255,0.03);border:2px dashed rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
-                    ${aboutData.storyImage ? `<img loading="lazy" src="${!aboutData.storyImage.startsWith('idb://') ? aboutData.storyImage : ''}" data-idb-src="${aboutData.storyImage}" style="width:100%;height:100%;object-fit:cover;">` : '<span style="color:rgba(255,255,255,0.25);">No Image</span>'}
+                    ${aboutData.storyImage ? `<img alt="About page story image" loading="lazy" src="${!aboutData.storyImage.startsWith('idb://') ? aboutData.storyImage : ''}" data-idb-src="${aboutData.storyImage}" style="width:100%;height:100%;object-fit:cover;">` : '<span style="color:rgba(255,255,255,0.25);">No Image</span>'}
 </div>
 <div>
 <p style="color:rgba(255,255,255,0.5);margin-bottom:16px;">Upload an image for the "Our Story" section. Recommended: 800x1000px (4:5 ratio)</p>
@@ -9366,7 +9529,7 @@ function loadAdminAboutPanel() {
 <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px;position:relative;">
 <button onclick="deleteTeamMember(${i})" style="position:absolute;top:10px;right:10px;width:28px;height:28px;background:rgba(230,57,70,0.15);border:1px solid rgba(230,57,70,0.3);color:#e63946;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:2;" title="Delete member">&times;</button>
 <div style="aspect-ratio:3/4;background:rgba(255,255,255,0.03);border:2px dashed rgba(255,255,255,0.1);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
-                            ${member.photo ? `<img loading="lazy" src="${!member.photo.startsWith('idb://') ? member.photo : ''}" data-idb-src="${member.photo}" style="width:100%;height:100%;object-fit:cover;">` : '<span style="color:rgba(255,255,255,0.25);font-size:12px;">No Photo</span>'}
+                            ${member.photo ? `<img alt="Team member photo" loading="lazy" src="${!member.photo.startsWith('idb://') ? member.photo : ''}" data-idb-src="${member.photo}" style="width:100%;height:100%;object-fit:cover;">` : '<span style="color:rgba(255,255,255,0.25);font-size:12px;">No Photo</span>'}
 </div>
 <input type="file" id="teamPhoto${i}" accept="image/*" style="display:none;" onchange="uploadTeamPhoto(${i}, this)">
 <button onclick="document.getElementById('teamPhoto${i}').click()" style="width:100%;padding:10px;background:rgba(255,255,255,0.1);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;margin-bottom:8px;">Upload Photo</button>
@@ -9485,7 +9648,7 @@ function loadAdminDashboardPanel() {
 
     document.getElementById('adminDashboardPanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-<h1 style="font-size: 28px; font-weight: 700;">Dashboard</h1>
+<h2 style="font-size: 28px; font-weight: 700;">Dashboard</h2>
 <div style="display: flex; gap: 12px;">
 <button onclick="syncAllData()" class="btn-outline" style="display: flex; align-items: center; gap: 8px;">🔄 Sync All</button>
 <span class="sync-status" style="display: flex; align-items: center; gap: 6px; padding: 8px 16px; background: ${_backendAvailable ? '#10b981' : '#ef4444'}; color: #fff; border-radius: 8px; font-size: 13px;">
@@ -9713,7 +9876,7 @@ async function loadAdminCalendarPanel() {
 
     document.getElementById('adminCalendarPanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-<h1 style="font-size: 28px; font-weight: 700; color: var(--admin-text);">📅 Calendar</h1>
+<h2 style="font-size: 28px; font-weight: 700; color: var(--admin-text);">📅 Calendar</h2>
 <div style="display: flex; gap: 12px;">
 <button onclick="openMeetingModal()" class="btn-admin primary">+ Schedule Meeting</button>
 </div>
@@ -9890,7 +10053,7 @@ function loadAdminUserManagementPanel() {
 
     document.getElementById('adminUsermanagementPanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-<h1 style="font-size: 28px; font-weight: 700;">🔐 User Management</h1>
+<h2 style="font-size: 28px; font-weight: 700;">🔐 User Management</h2>
 <div style="display: flex; gap: 12px;">
 <button onclick="showAddAdminModal()" style="padding: 10px 20px; background: linear-gradient(135deg, #ff0000, #cc0000); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">+ Add Admin User</button>
 </div>
@@ -10132,7 +10295,7 @@ function loadAdminAnalyticsPanel() {
 
     document.getElementById('adminAnalyticsPanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-<h1 style="font-size: 28px; font-weight: 700;">📈 Site Analytics</h1>
+<h2 style="font-size: 28px; font-weight: 700;">📈 Site Analytics</h2>
 <div style="display: flex; gap: 12px;">
 <select id="analyticsDateRange" onchange="updateAnalyticsRange(this.value)" style="padding: 10px 16px; border: 1px solid #e5e5e5; border-radius: 8px; font-size: 14px;">
 <option value="7d">Last 7 Days</option>
@@ -10395,7 +10558,7 @@ function loadAdminReviewsPanel() {
     document.getElementById('adminReviewsPanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
 <div>
-<h1 style="font-size: 28px; font-weight: 700; color: #fff;">⭐ Google Reviews</h1>
+<h2 style="font-size: 28px; font-weight: 700; color: #fff;">⭐ Google Reviews</h2>
 <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
 <span style="font-size: 11px; padding: 4px 10px; border-radius: 100px; background: ${isLiveData ? 'rgba(16,185,129,0.15); color: #34d399;' : 'rgba(245,158,11,0.15); color: #fbbf24;'}">${isLiveData ? '● Live from Google' : '● Demo Data'}</span>
                     ${lastSync ? '<span style="font-size: 11px; color: rgba(255,255,255,0.3);">Last sync: ' + new Date(lastSync).toLocaleString() + '</span>' : ''}
@@ -10523,7 +10686,7 @@ function loadAdminClientsPanel(searchTerm = '') {
 
     document.getElementById('adminClientsPanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-<h1 style="font-size: 28px; font-weight: 700;">All Clients</h1>
+<h2 style="font-size: 28px; font-weight: 700;">All Clients</h2>
 <span style="color: #888;">${filtered.length} of ${clients.length} clients</span>
 </div>
 <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; align-items: center;">
@@ -10881,7 +11044,7 @@ function loadAdminOrdersPanel(searchTerm = '', statusFilter = 'all') {
 
     document.getElementById('adminOrdersPanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-<h1 style="font-size: 28px; font-weight: 700;">📋 Order Tracking</h1>
+<h2 style="font-size: 28px; font-weight: 700;">📋 Order Tracking</h2>
 <span style="color: #888;">${filtered.length} of ${orders.length} orders</span>
 </div>
 
@@ -11188,7 +11351,7 @@ async function assignDesignerToOrder(orderId, designerName) {
                         subject: `🎨 Your ${order.projectName} is Now In Progress!`,
                         html: `<div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">
 <div style="background: linear-gradient(135deg, #3b82f6, #60a5fa); padding: 32px; text-align: center;">
-<h1 style="margin: 0; font-size: 24px; color: #fff;">Work Has Begun! 🎨</h1>
+<h2 style="margin: 0; font-size: 24px; color: #fff;">Work Has Begun! 🎨</h2>
 </div>
 <div style="padding: 32px;">
 <p style="color: #ccc; font-size: 16px;">Hey ${client.name},</p>
@@ -11374,7 +11537,7 @@ function loadAdminLeadsPanel() {
     const newLeads = leads.filter(l => l.status === 'new').length;
     document.getElementById('adminLeadsPanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-<h1 style="font-size: 28px; font-weight: 700;">Lead Management</h1>
+<h2 style="font-size: 28px; font-weight: 700;">Lead Management</h2>
 <button onclick="addManualLead()" class="btn-cta">+ Add Lead</button>
 </div>
 
@@ -11507,7 +11670,7 @@ function addManualLead() {
 
 function loadAdminNewOrderPanel() {
     document.getElementById('adminNewOrderPanel').innerHTML = `
-<h1 style="font-size: 28px; font-weight: 700; margin-bottom: 32px;">Create New Order</h1>
+<h2 style="font-size: 28px; font-weight: 700; margin-bottom: 32px;">Create New Order</h2>
 
         <!-- SERVICE PACKAGES -->
 <div class="form-section">
@@ -11722,7 +11885,7 @@ function copyLeadForm() {
 
 function loadAdminNewClientPanel() {
     document.getElementById('adminNewclientPanel').innerHTML = `
-<h1 style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Create New Client</h1>
+<h2 style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">Create New Client</h2>
 <p style="color: #888; margin-bottom: 32px;">Fill in client details to set up their portal, then send a welcome email with questionnaire.</p>
 <form onsubmit="createClient(event)" class="form-section" style="max-width: 700px;">
 
@@ -11819,7 +11982,7 @@ function loadAdminAssetsPanel() {
 
     document.getElementById('adminAssetsPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">📁 Client Brand Asset Storage</h1>
+<h2 class="panel-title">📁 Client Brand Asset Storage</h2>
 <p class="panel-subtitle">Centralized storage for all client brand assets</p>
 </div>
 
@@ -11861,7 +12024,7 @@ function loadAdminAssetsPanel() {
                     return `
 <div onclick="selectAssetClient(${c.id})" style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 12px; min-width: 200px; transition: all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">
 <div style="width: 48px; height: 48px; border-radius: 8px; background: linear-gradient(135deg, ${c.colors?.[0] || '#ff3b30'}, ${c.colors?.[1] || '#000'}); display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                            ${firstLogo ? '<img loading="lazy" src="' + firstLogo + '" style="width: 100%; height: 100%; object-fit: contain; padding: 4px;">' : '<span style="color: #fff; font-weight: 700;">' + c.name.charAt(0) + '</span>'}
+                            ${firstLogo ? '<img alt="Client brand logo" loading="lazy" src="' + firstLogo + '" style="width: 100%; height: 100%; object-fit: contain; padding: 4px;">' : '<span style="color: #fff; font-weight: 700;">' + c.name.charAt(0) + '</span>'}
 </div>
 <div>
 <div style="font-weight: 600; color: #fff;">${c.name}</div>
@@ -11946,7 +12109,7 @@ function renderAssetUpload() {
 <h3 style="margin-bottom: 16px;">Current ${categoryName} (${currentAssets.length})</h3>
 <div class="assets-grid">${currentAssets.map((a, i) => `
 <div class="asset-card">
-<div class="asset-preview">${a.data && a.data.startsWith('data:image') ? `<img loading="lazy" src="${a.data}">` : a.type}</div>
+<div class="asset-preview">${a.data && a.data.startsWith('data:image') ? `<img alt="Brand asset preview" loading="lazy" src="${a.data}">` : a.type}</div>
 <div class="asset-info"><div class="asset-name">${a.name}</div><div class="asset-meta">${a.size} • ${a.type}</div></div>
 <div style="padding: 0 12px 12px;"><button onclick="deleteAsset(${i})" style="width: 100%; padding: 8px; background: #fee2e2; color: #dc2626; border: none; border-radius: 4px; cursor: pointer; font-family: inherit;">Delete</button></div>
 </div>
@@ -12125,7 +12288,7 @@ async function createOrder(e) {
                     subject: `📋 New Project: ${order.projectName} — Invoice Ready`,
                     html: `<div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">
 <div style="background: linear-gradient(135deg, #e11d48, #ff6b6b); padding: 32px; text-align: center;">
-<h1 style="margin: 0; font-size: 24px; color: #fff;">New Project Started!</h1>
+<h2 style="margin: 0; font-size: 24px; color: #fff;">New Project Started!</h2>
 </div>
 <div style="padding: 32px;">
 <p style="color: #ccc; font-size: 16px;">Hey ${client.name},</p>
@@ -12276,7 +12439,7 @@ async function createClient(e) {
                     subject: `Welcome to New Urban Influence! 🎉`,
                     html: `<div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">
 <div style="background: linear-gradient(135deg, #e11d48, #ff6b6b); padding: 40px; text-align: center;">
-<h1 style="margin: 0; font-size: 28px; color: #fff;">Welcome to the Family!</h1>
+<h2 style="margin: 0; font-size: 28px; color: #fff;">Welcome to the Family!</h2>
 <p style="color: rgba(255,255,255,0.8); margin-top: 8px;">New Urban Influence</p>
 </div>
 <div style="padding: 32px;">
@@ -12320,7 +12483,7 @@ async function createClient(e) {
                     subject: `📋 Quick Questionnaire — Help Us Serve You Better`,
                     html: `<div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">
 <div style="background: linear-gradient(135deg, #3b82f6, #60a5fa); padding: 32px; text-align: center;">
-<h1 style="margin: 0; font-size: 24px; color: #fff;">Tell Us About Your Project</h1>
+<h2 style="margin: 0; font-size: 24px; color: #fff;">Tell Us About Your Project</h2>
 </div>
 <div style="padding: 32px;">
 <p style="color: #ccc; font-size: 16px;">Hey ${client.contact || client.name},</p>
@@ -12532,7 +12695,7 @@ async function applyStatusUpdate(id) {
                         subject: `${info.icon} ${order.projectName} — Status: ${info.label}`,
                         html: `<div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">
 <div style="background: ${info.color}; padding: 32px; text-align: center;">
-<h1 style="margin: 0; font-size: 24px; color: #fff;">${info.icon} Project Update</h1>
+<h2 style="margin: 0; font-size: 24px; color: #fff;">${info.icon} Project Update</h2>
 </div>
 <div style="padding: 32px;">
 <p style="color: #ccc; font-size: 16px;">Hey ${client.name},</p>
@@ -12592,7 +12755,7 @@ async function markDelivered(id) {
                     subject: `🎉 Your ${order.projectName || order.project || 'Project'} Has Been Delivered!`,
                     html: `<div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">
 <div style="background: linear-gradient(135deg, #10b981, #059669); padding: 32px; text-align: center;">
-<h1 style="margin: 0; font-size: 24px; color: #fff;">Your Project is Complete! 🎉</h1>
+<h2 style="margin: 0; font-size: 24px; color: #fff;">Your Project is Complete! 🎉</h2>
 </div>
 <div style="padding: 32px;">
 <p style="color: #ccc; font-size: 16px;">Hey ${client.name || 'there'},</p>
@@ -13510,7 +13673,7 @@ async function clientApproveProof(proofId, clientId) {
             body: JSON.stringify({
                 to: 'newurbaninfluence@gmail.com',
                 subject: '✅ Proof Approved: ' + (p.title || p.name || 'Design Proof') + ' — ' + (client?.name || 'Client'),
-                html: '<div style="font-family:-apple-system,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#fff;border-radius:12px;overflow:hidden;"><div style="background:linear-gradient(135deg,#10b981,#059669);padding:32px;text-align:center;"><h1 style="margin:0;font-size:24px;color:#fff;">Proof Approved! ✅</h1></div><div style="padding:32px;"><p style="color:#ccc;font-size:16px;"><strong>' + (client?.name || 'Client') + '</strong> has approved:</p><div style="background:#111;border:1px solid #333;border-radius:12px;padding:20px;margin:16px 0;"><p style="color:#fff;font-weight:600;font-size:18px;margin:0 0 8px;">' + (p.title || p.name || 'Design Proof') + '</p><p style="color:#888;font-size:14px;margin:0;">' + (p.category || p.proofType || 'Proof') + ' • Version ' + (p.version || 1) + '</p></div><p style="color:#888;font-size:14px;">You can now proceed with final deliverables.</p></div></div>',
+                html: '<div style="font-family:-apple-system,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#fff;border-radius:12px;overflow:hidden;"><div style="background:linear-gradient(135deg,#10b981,#059669);padding:32px;text-align:center;"><h2 style="margin:0;font-size:24px;color:#fff;">Proof Approved! ✅</h2></div><div style="padding:32px;"><p style="color:#ccc;font-size:16px;"><strong>' + (client?.name || 'Client') + '</strong> has approved:</p><div style="background:#111;border:1px solid #333;border-radius:12px;padding:20px;margin:16px 0;"><p style="color:#fff;font-weight:600;font-size:18px;margin:0 0 8px;">' + (p.title || p.name || 'Design Proof') + '</p><p style="color:#888;font-size:14px;margin:0;">' + (p.category || p.proofType || 'Proof') + ' • Version ' + (p.version || 1) + '</p></div><p style="color:#888;font-size:14px;">You can now proceed with final deliverables.</p></div></div>',
                 text: (client?.name || 'Client') + ' approved "' + (p.title || p.name || 'Design Proof') + '". Proceed with final deliverables.'
             })
         });
@@ -13584,7 +13747,7 @@ async function submitClientProofRevision(proofId, clientId) {
             body: JSON.stringify({
                 to: 'newurbaninfluence@gmail.com',
                 subject: '🔄 Revision Requested: ' + (p.title || p.name || 'Design Proof') + ' — ' + (client?.name || 'Client'),
-                html: '<div style="font-family:-apple-system,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#fff;border-radius:12px;overflow:hidden;"><div style="background:linear-gradient(135deg,#ef4444,#dc2626);padding:32px;text-align:center;"><h1 style="margin:0;font-size:24px;color:#fff;">Revision Requested 🔄</h1></div><div style="padding:32px;"><p style="color:#ccc;font-size:16px;"><strong>' + (client?.name || 'Client') + '</strong> wants changes to:</p><div style="background:#111;border:1px solid #333;border-radius:12px;padding:20px;margin:16px 0;"><p style="color:#fff;font-weight:600;font-size:18px;margin:0 0 8px;">' + (p.title || p.name || 'Design Proof') + '</p><p style="color:#888;font-size:14px;margin:0;">Revision #' + (p.revisionCount || 1) + '</p></div><div style="background:#111;border:1px solid #333;border-radius:12px;padding:20px;margin:16px 0;"><p style="color:#888;font-size:12px;margin:0 0 8px;">CLIENT FEEDBACK:</p><p style="color:#fff;font-size:15px;line-height:1.6;margin:0;">' + feedback.replace(/\n/g, '<br>') + '</p></div></div></div>',
+                html: '<div style="font-family:-apple-system,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#fff;border-radius:12px;overflow:hidden;"><div style="background:linear-gradient(135deg,#ef4444,#dc2626);padding:32px;text-align:center;"><h2 style="margin:0;font-size:24px;color:#fff;">Revision Requested 🔄</h2></div><div style="padding:32px;"><p style="color:#ccc;font-size:16px;"><strong>' + (client?.name || 'Client') + '</strong> wants changes to:</p><div style="background:#111;border:1px solid #333;border-radius:12px;padding:20px;margin:16px 0;"><p style="color:#fff;font-weight:600;font-size:18px;margin:0 0 8px;">' + (p.title || p.name || 'Design Proof') + '</p><p style="color:#888;font-size:14px;margin:0;">Revision #' + (p.revisionCount || 1) + '</p></div><div style="background:#111;border:1px solid #333;border-radius:12px;padding:20px;margin:16px 0;"><p style="color:#888;font-size:12px;margin:0 0 8px;">CLIENT FEEDBACK:</p><p style="color:#fff;font-size:15px;line-height:1.6;margin:0;">' + feedback.replace(/\n/g, '<br>') + '</p></div></div></div>',
                 text: (client?.name || 'Client') + ' requested revisions on "' + (p.title || p.name) + '": ' + feedback
             })
         });
@@ -13671,7 +13834,7 @@ async function sendClientDesignerMessage(clientId) {
             body: JSON.stringify({
                 to: 'newurbaninfluence@gmail.com',
                 subject: '💬 Client Message: ' + (client.name || 'Client') + ' — ' + (subjectLabels[subject] || subject),
-                html: '<div style="font-family:-apple-system,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#fff;border-radius:12px;overflow:hidden;"><div style="background:linear-gradient(135deg,#e11d48,#be185d);padding:32px;text-align:center;"><h1 style="margin:0;font-size:24px;color:#fff;">New Client Message 💬</h1></div><div style="padding:32px;"><div style="display:flex;justify-content:space-between;margin-bottom:20px;"><div><p style="color:#888;font-size:12px;margin:0;">FROM</p><p style="color:#fff;font-size:16px;font-weight:600;margin:4px 0 0;">' + (client.name || 'Client') + '</p><p style="color:#888;font-size:13px;margin:2px 0 0;">' + (client.email || '') + '</p></div><div style="text-align:right;"><p style="color:#888;font-size:12px;margin:0;">SUBJECT</p><p style="color:#e11d48;font-size:14px;font-weight:600;margin:4px 0 0;">' + (subjectLabels[subject] || subject) + '</p></div></div><div style="background:#111;border:1px solid #333;border-radius:12px;padding:24px;"><p style="color:#fff;font-size:15px;line-height:1.7;margin:0;white-space:pre-wrap;">' + body.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>') + '</p></div><p style="color:#888;font-size:13px;margin-top:20px;">Reply to this client from the admin panel or email them at ' + (client.email || 'N/A') + '</p></div></div>',
+                html: '<div style="font-family:-apple-system,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#fff;border-radius:12px;overflow:hidden;"><div style="background:linear-gradient(135deg,#e11d48,#be185d);padding:32px;text-align:center;"><h2 style="margin:0;font-size:24px;color:#fff;">New Client Message 💬</h2></div><div style="padding:32px;"><div style="display:flex;justify-content:space-between;margin-bottom:20px;"><div><p style="color:#888;font-size:12px;margin:0;">FROM</p><p style="color:#fff;font-size:16px;font-weight:600;margin:4px 0 0;">' + (client.name || 'Client') + '</p><p style="color:#888;font-size:13px;margin:2px 0 0;">' + (client.email || '') + '</p></div><div style="text-align:right;"><p style="color:#888;font-size:12px;margin:0;">SUBJECT</p><p style="color:#e11d48;font-size:14px;font-weight:600;margin:4px 0 0;">' + (subjectLabels[subject] || subject) + '</p></div></div><div style="background:#111;border:1px solid #333;border-radius:12px;padding:24px;"><p style="color:#fff;font-size:15px;line-height:1.7;margin:0;white-space:pre-wrap;">' + body.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>') + '</p></div><p style="color:#888;font-size:13px;margin-top:20px;">Reply to this client from the admin panel or email them at ' + (client.email || 'N/A') + '</p></div></div>',
                 text: 'New message from ' + (client.name || 'Client') + ' (' + (client.email || '') + ')\nSubject: ' + (subjectLabels[subject] || subject) + '\n\n' + body
             })
         });
@@ -13806,7 +13969,7 @@ async function confirmBookCall() {
             body: JSON.stringify({
                 to: 'newurbaninfluence@gmail.com',
                 subject: '📞 Call Booked: ' + (client.name || 'Client') + ' — ' + dateFormatted + ' at ' + time + ' EST',
-                html: '<div style="font-family:-apple-system,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#fff;border-radius:12px;overflow:hidden;"><div style="background:linear-gradient(135deg,#8b5cf6,#7c3aed);padding:32px;text-align:center;"><h1 style="margin:0;font-size:24px;color:#fff;">New Call Booked 📞</h1></div><div style="padding:32px;"><p style="color:#ccc;font-size:16px;"><strong>' + (client.name || 'Client') + '</strong> booked a call:</p><div style="background:#111;border:1px solid #333;border-radius:12px;padding:24px;margin:16px 0;"><div style="display:grid;grid-template-columns:auto 1fr;gap:8px 16px;"><span style="color:#888;font-size:13px;">📅 Date:</span><span style="color:#fff;font-weight:600;">' + dateFormatted + '</span><span style="color:#888;font-size:13px;">🕐 Time:</span><span style="color:#fff;font-weight:600;">' + time + ' EST</span><span style="color:#888;font-size:13px;">📧 Email:</span><span style="color:#fff;">' + (client.email || 'N/A') + '</span><span style="color:#888;font-size:13px;">📋 Topic:</span><span style="color:#fff;">' + topic.replace(/</g, '&lt;') + '</span></div></div></div></div>',
+                html: '<div style="font-family:-apple-system,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#fff;border-radius:12px;overflow:hidden;"><div style="background:linear-gradient(135deg,#8b5cf6,#7c3aed);padding:32px;text-align:center;"><h2 style="margin:0;font-size:24px;color:#fff;">New Call Booked 📞</h2></div><div style="padding:32px;"><p style="color:#ccc;font-size:16px;"><strong>' + (client.name || 'Client') + '</strong> booked a call:</p><div style="background:#111;border:1px solid #333;border-radius:12px;padding:24px;margin:16px 0;"><div style="display:grid;grid-template-columns:auto 1fr;gap:8px 16px;"><span style="color:#888;font-size:13px;">📅 Date:</span><span style="color:#fff;font-weight:600;">' + dateFormatted + '</span><span style="color:#888;font-size:13px;">🕐 Time:</span><span style="color:#fff;font-weight:600;">' + time + ' EST</span><span style="color:#888;font-size:13px;">📧 Email:</span><span style="color:#fff;">' + (client.email || 'N/A') + '</span><span style="color:#888;font-size:13px;">📋 Topic:</span><span style="color:#fff;">' + topic.replace(/</g, '&lt;') + '</span></div></div></div></div>',
                 text: 'Call booked by ' + (client.name || 'Client') + ' for ' + dateFormatted + ' at ' + time + ' EST. Topic: ' + topic
             })
         });
@@ -13821,7 +13984,7 @@ async function confirmBookCall() {
                 body: JSON.stringify({
                     to: client.email,
                     subject: '📞 Call Confirmed — ' + dateFormatted + ' at ' + time + ' EST',
-                    html: '<div style="font-family:-apple-system,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#fff;border-radius:12px;overflow:hidden;"><div style="background:linear-gradient(135deg,#e11d48,#be185d);padding:32px;text-align:center;"><h1 style="margin:0;font-size:24px;color:#fff;">Your Call is Confirmed! 📞</h1></div><div style="padding:32px;"><p style="color:#ccc;font-size:16px;">Hey ' + (client.contact || client.name || 'there') + ',</p><p style="color:#ccc;font-size:16px;">Your call with New Urban Influence is confirmed:</p><div style="background:#111;border:1px solid #333;border-radius:12px;padding:24px;margin:20px 0;text-align:center;"><p style="color:#e11d48;font-size:24px;font-weight:700;margin:0 0 4px;">' + dateFormatted + '</p><p style="color:#fff;font-size:20px;font-weight:600;margin:0;">' + time + ' EST</p></div><p style="color:#888;font-size:14px;">We\'ll call you at the number on file. If you need to reschedule, contact us at <a href="tel:2484878747" style="color:#e11d48;text-decoration:none;">(248) 487-8747</a> or reply to this email.</p></div><div style="background:#050505;padding:20px;text-align:center;border-top:1px solid #222;"><p style="color:#666;font-size:12px;margin:0;">New Urban Influence • Detroit, MI</p></div></div>',
+                    html: '<div style="font-family:-apple-system,sans-serif;max-width:600px;margin:0 auto;background:#0a0a0a;color:#fff;border-radius:12px;overflow:hidden;"><div style="background:linear-gradient(135deg,#e11d48,#be185d);padding:32px;text-align:center;"><h2 style="margin:0;font-size:24px;color:#fff;">Your Call is Confirmed! 📞</h2></div><div style="padding:32px;"><p style="color:#ccc;font-size:16px;">Hey ' + (client.contact || client.name || 'there') + ',</p><p style="color:#ccc;font-size:16px;">Your call with New Urban Influence is confirmed:</p><div style="background:#111;border:1px solid #333;border-radius:12px;padding:24px;margin:20px 0;text-align:center;"><p style="color:#e11d48;font-size:24px;font-weight:700;margin:0 0 4px;">' + dateFormatted + '</p><p style="color:#fff;font-size:20px;font-weight:600;margin:0;">' + time + ' EST</p></div><p style="color:#888;font-size:14px;">We\'ll call you at the number on file. If you need to reschedule, contact us at <a href="tel:2484878747" style="color:#e11d48;text-decoration:none;">(248) 487-8747</a> or reply to this email.</p></div><div style="background:#050505;padding:20px;text-align:center;border-top:1px solid #222;"><p style="color:#666;font-size:12px;margin:0;">New Urban Influence • Detroit, MI</p></div></div>',
                     text: 'Your call is confirmed for ' + dateFormatted + ' at ' + time + ' EST. We\'ll call you at the number on file. To reschedule, call (248) 487-8747.'
                 })
             });
@@ -15245,7 +15408,7 @@ function showPaymentPage(submission) {
 <div class="intake-view" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
 <div class="wizard-content" style="max-width: 600px; text-align: center;">
 <div class="success-icon" style="width: 100px; height: 100px; background: linear-gradient(135deg, var(--green), #34d399); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 48px; color: white; box-shadow: 0 20px 60px rgba(16,185,129,0.4);">✓</div>
-<h1 class="success-title">Submission Received!</h1>
+<h2 class="success-title">Submission Received!</h2>
 <p class="success-message">Thank you for choosing New Urban Influence. A confirmation email has been sent with your project details.</p>
 
 <div class="success-details">
@@ -15320,7 +15483,7 @@ function loadEnhancedBrandPortal(client) {
 
 <div class="brand-portal-header" style="background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%);">
             ${(useGuide && clientBrandGuide.logo) || client.logo ? `<img loading="lazy" src="${(useGuide && clientBrandGuide.logo) || client.logo}" class="brand-portal-logo" alt="${client.name}">` : `<div style="font-size: 48px; font-weight: 900;">${client.name}</div>`}
-<h1 class="brand-portal-title">${client.name} Brand Portal</h1>
+<h2 class="brand-portal-title">${client.name} Brand Portal</h2>
 <p class="brand-portal-subtitle">Your complete brand identity system</p>
 </div>
 
@@ -15557,7 +15720,7 @@ function loadAdminSubmissionsPanel(searchTerm = '') {
 
     document.getElementById('adminSubmissionsPanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-<h1 style="font-size: 28px; font-weight: 700;">Form Submissions</h1>
+<h2 style="font-size: 28px; font-weight: 700;">Form Submissions</h2>
 <span style="color: #888;">${filtered.length} of ${formSubmissions.length} submissions</span>
 </div>
 <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; align-items: center;">
@@ -15860,7 +16023,7 @@ function loadAdminCrmPanel() {
 </style>
 
 <div class="panel-header">
-<h1 class="panel-title">💼 CRM Pipeline</h1>
+<h2 class="panel-title">💼 CRM Pipeline</h2>
 <p class="panel-subtitle">Manage your sales pipeline, contacts, and communications</p>
 </div>
 
@@ -17130,7 +17293,7 @@ function loadAdminProjectsPanel() {
     const projectStages = ['Discovery', 'Design', 'Development', 'Review', 'Delivery', 'Complete'];
     document.getElementById('adminProjectsPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">📂 Project Tracker</h1>
+<h2 class="panel-title">📂 Project Tracker</h2>
 <p class="panel-subtitle">Track project progress, timers, and payments</p>
 </div>
 
@@ -18125,7 +18288,7 @@ function loadAdminProofsPanel() {
 
     document.getElementById('adminProofsPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">✅ Proof Approval Center</h1>
+<h2 class="panel-title">✅ Proof Approval Center</h2>
 <p class="panel-subtitle">Create, manage, and approve design proofs across all formats</p>
 </div>
 
@@ -18218,7 +18381,7 @@ function renderEnhancedProofCard(proof) {
     let previewContent = '';
     if (isLink && proof.previewUrl) {
         previewContent = proof.thumbnail
-            ? `<img loading="lazy" src="${proof.thumbnail}" style="max-width: 100%; max-height: 100%; object-fit: contain; opacity: 0.8;">`
+            ? `<img alt="Design proof thumbnail" loading="lazy" src="${proof.thumbnail}" style="max-width: 100%; max-height: 100%; object-fit: contain; opacity: 0.8;">`
             : `<div style="text-align: center; color: #3b82f6;">
 <div style="font-size: 48px; margin-bottom: 8px;">🌐</div>
 <div style="font-size: 12px; word-break: break-all; padding: 0 20px;">${proof.previewUrl.substring(0, 40)}...</div>
@@ -18228,7 +18391,7 @@ function renderEnhancedProofCard(proof) {
     } else if (isVideo) {
         previewContent = `<div style="text-align: center; color: #666;"><div style="font-size: 48px; margin-bottom: 8px;">🎬</div><div>Video Proof</div></div>`;
     } else if (proof.image) {
-        previewContent = `<img loading="lazy" src="${proof.image}" style="max-width: 100%; max-height: 100%; object-fit: contain;">`;
+        previewContent = `<img alt="Design proof full image" loading="lazy" src="${proof.image}" style="max-width: 100%; max-height: 100%; object-fit: contain;">`;
     } else {
         previewContent = `<div style="text-align: center; color: #666;"><div style="font-size: 48px; margin-bottom: 8px;">${categoryData.icon}</div><div>No Preview</div></div>`;
     }
@@ -18431,7 +18594,7 @@ function showCreateProofModal() {
 </div>
 <input type="file" id="proofScreenshotInput" accept="image/*" style="display: none;" onchange="handleScreenshotUpload(this)">
 <div id="screenshotPreview" style="display: none; margin-top: 8px; text-align: center;">
-<img loading="lazy" id="screenshotImg" style="max-width: 100%; max-height: 150px; border-radius: 8px;">
+<img alt="Screenshot preview" loading="lazy" id="screenshotImg" style="max-width: 100%; max-height: 150px; border-radius: 8px;">
 </div>
 </div>
 </div>
@@ -18621,7 +18784,7 @@ function processProofFile(file) {
             previewArea.style.display = 'block';
             previewContent.innerHTML = `
 <div style="position: relative;">
-<img loading="lazy" src="${thumbnail}" style="max-width: 100%; max-height: 300px; border-radius: 8px; opacity: 0.8;">
+<img alt="Proof thumbnail preview" loading="lazy" src="${thumbnail}" style="max-width: 100%; max-height: 300px; border-radius: 8px; opacity: 0.8;">
 <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 48px;">▶️</div>
 </div>
 <div style="margin-top: 8px; color: #888; font-size: 13px;">🎬 ${file.name} (${fileSizeMB.toFixed(1)}MB)</div>
@@ -18670,7 +18833,7 @@ function processProofFile(file) {
 
             previewArea.style.display = 'block';
             previewContent.innerHTML = `
-<img loading="lazy" src="${compressed}" style="max-width: 100%; max-height: 300px; border-radius: 8px;">
+<img alt="Compressed proof image" loading="lazy" src="${compressed}" style="max-width: 100%; max-height: 300px; border-radius: 8px;">
 <div style="margin-top: 8px; color: #888; font-size: 13px;">🖼️ ${file.name}</div>
 <div style="margin-top: 4px; color: #10b981; font-size: 11px;">✓ Compressed: ${fileSizeMB.toFixed(1)}MB → ${compressedSize}KB</div>
             `;
@@ -19018,7 +19181,7 @@ async function submitProofRevision(id) {
                         subject: `🔄 Revision Requested: ${proof.name}`,
                         html: `<div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">
 <div style="background: linear-gradient(135deg, #f59e0b, #ef4444); padding: 24px; text-align: center;">
-<h1 style="margin: 0; font-size: 20px; color: #fff;">🔄 Revision Requested</h1>
+<h2 style="margin: 0; font-size: 20px; color: #fff;">🔄 Revision Requested</h2>
 </div>
 <div style="padding: 32px;">
 <p style="color: #ccc; font-size: 16px;">Hey ${designer.name || 'Designer'},</p>
@@ -19077,7 +19240,7 @@ function viewProofDetails(id) {
                         ${proof.isVideo && proof.videoUrl ? `
 <video src="${proof.videoUrl}" style="max-width: 100%; max-height: 400px; border-radius: 8px;" controls></video>
                         ` : proof.image ? `
-<img loading="lazy" src="${proof.image}" style="max-width: 100%; max-height: 400px; border-radius: 8px;">
+<img alt="Proof revision image" loading="lazy" src="${proof.image}" style="max-width: 100%; max-height: 400px; border-radius: 8px;">
                         ` : `
 <div style="padding: 60px; color: #666;">No preview available</div>
                         `}
@@ -19175,7 +19338,7 @@ function openProofPreview(proofId) {
                     ${proof.previewUrl ? `
 <iframe src="${proof.previewUrl}" style="width: 100%; height: 100%; border: none;" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
                     ` : proof.image ? `
-<img loading="lazy" src="${proof.image}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+<img alt="Proof approval image" loading="lazy" src="${proof.image}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                     ` : `
 <div style="text-align: center; color: #666;">
 <div style="font-size: 64px; margin-bottom: 16px;">🌐</div>
@@ -19437,7 +19600,7 @@ function loadAdminDeliveryPanel() {
 
     document.getElementById('adminDeliveryPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">📦 Delivery & Proofing</h1>
+<h2 class="panel-title">📦 Delivery & Proofing</h2>
 <p class="panel-subtitle">Manage proofs, deliverables, and client handoff — all activity in one place</p>
 </div>
 
@@ -19568,7 +19731,7 @@ function showUploadDeliveryModal(orderId) {
 function loadAdminSeoPanel() {
     document.getElementById('adminSeoPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">🔍 SEO / AEO / GEO Management</h1>
+<h2 class="panel-title">🔍 SEO / AEO / GEO Management</h2>
 <p class="panel-subtitle">Optimize for search engines, AI answer engines, and local search</p>
 </div>
 <div class="seo-grid">
@@ -19647,7 +19810,7 @@ function removeFaq(idx) {
 function loadAdminGmbPanel() {
     document.getElementById('adminGmbPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">📍 Google My Business</h1>
+<h2 class="panel-title">📍 Google My Business</h2>
 <p class="panel-subtitle">Manage your local SEO and Google Business Profile</p>
 </div>
 <div class="seo-grid">
@@ -19742,7 +19905,7 @@ function loadAdminEmailMarketingPanel() {
     const em = emailMarketing;
     document.getElementById('adminEmailmarketingPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">📧 Email Marketing</h1>
+<h2 class="panel-title">📧 Email Marketing</h2>
 <p class="panel-subtitle">Send newsletters and promotions to your subscribers</p>
 </div>
 
@@ -20176,7 +20339,7 @@ function loadAdminLoyaltyPanel() {
     const lp = loyaltyProgram;
     document.getElementById('adminLoyaltyPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">🎁 Loyalty Program</h1>
+<h2 class="panel-title">🎁 Loyalty Program</h2>
 <p class="panel-subtitle">Reward your loyal clients with points and discounts</p>
 </div>
 
@@ -20347,7 +20510,7 @@ function loadAdminCommunicationsPanel() {
 
     document.getElementById('adminCommunicationsPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">💬 Communications Hub</h1>
+<h2 class="panel-title">💬 Communications Hub</h2>
 <p class="panel-subtitle">All your client communications in one place</p>
 </div>
 
@@ -20474,7 +20637,7 @@ function loadAdminSocialDmPanel() {
 
     document.getElementById('adminSocialdmPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">💬 Social Media Quick Links</h1>
+<h2 class="panel-title">💬 Social Media Quick Links</h2>
 <p class="panel-subtitle">Send DMs directly to clients without API - store handles, draft messages, click to open</p>
 </div>
 
@@ -20897,7 +21060,7 @@ function loadAdminSmsPanel() {
     const sms = smsSystem;
     document.getElementById('adminSmsPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">📲 SMS Communications</h1>
+<h2 class="panel-title">📲 SMS Communications</h2>
 <p class="panel-subtitle">Manage SMS through OpenPhone integration</p>
 </div>
 
@@ -21234,7 +21397,7 @@ function openSmsConversation(phone) {
 function loadAdminSiteImagesPanel() {
     document.getElementById('adminSiteimagesPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">🖼️ Site Images & Branding</h1>
+<h2 class="panel-title">🖼️ Site Images & Branding</h2>
 <p class="panel-subtitle">Manage logos, taglines, and images across the entire website</p>
 </div>
 
@@ -21414,7 +21577,7 @@ function loadAdminDesignersPanel(searchTerm = '') {
 
     document.getElementById('adminDesignersPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">🎨 Designer Management</h1>
+<h2 class="panel-title">🎨 Designer Management</h2>
 <p class="panel-subtitle">Manage designer accounts and permissions (${filtered.length} of ${designers.length})</p>
 </div>
 <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; align-items: center;">
@@ -21429,7 +21592,7 @@ function loadAdminDesignersPanel(searchTerm = '') {
             ${filtered.map(designer => `
 <div class="client-card">
 <div class="client-card-header" style="background: linear-gradient(135deg, var(--red), #ff6b6b);">
-                        ${designer.avatar ? '<img loading="lazy" src="' + designer.avatar + '" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">' : designer.name.charAt(0)}
+                        ${designer.avatar ? '<img alt="Designer avatar" loading="lazy" src="' + designer.avatar + '" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">' : designer.name.charAt(0)}
 </div>
 <div class="client-card-body">
 <div class="client-card-name">${designer.name}</div>
@@ -21598,7 +21761,7 @@ function loadAdminBrandGuidePanel() {
 
     document.getElementById('adminBrandguidePanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">📘 Brand Guide & Proof System</h1>
+<h2 class="panel-title">📘 Brand Guide & Proof System</h2>
 <p class="panel-subtitle">Create brand guides, manage proofs, and client asset storage</p>
 </div>
 
@@ -21626,7 +21789,7 @@ function loadAdminBrandGuidePanel() {
                     return `
 <div class="client-card" style="cursor: pointer; position: relative;" onclick="editBrandGuidePortfolio(${proof.id})">
 <div class="client-card-header" style="background: linear-gradient(135deg, ${proof.brandColors?.[0] || '#e63946'}, ${proof.brandColors?.[1] || '#1d3557'});">
-                            ${proof.logo ? '<img loading="lazy" src="' + proof.logo + '" style="max-width: 80px; max-height: 50px; object-fit: contain;">' : (proof.clientName?.charAt(0) || 'B')}
+                            ${proof.logo ? '<img alt="Client logo proof" loading="lazy" src="' + proof.logo + '" style="max-width: 80px; max-height: 50px; object-fit: contain;">' : (proof.clientName?.charAt(0) || 'B')}
 </div>
                         ${proof.status === 'revision_requested' ? '<div style="position: absolute; top: 8px; right: 8px; background: #f59e0b; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: 600;">REVISION</div>' : ''}
                         ${isPaid ? '<div style="position: absolute; top: 8px; left: 8px; background: #2ecc71; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: 600;">PAID</div>' : ''}
@@ -21713,7 +21876,7 @@ function renderBrandGuideEditor() {
 <div class="form-section">
 <div class="form-section-title">🖼️ Hero Banner Image (21:9 Full Width)</div>
 <div style="aspect-ratio: 21/9; border: 2px dashed rgba(255,255,255,0.2); border-radius: 16px; overflow: hidden; background: linear-gradient(135deg, ${p.brandColors?.[0] || '#e63946'} 0%, ${p.brandColors?.[1] || '#1d3557'} 100%); position: relative;">
-                            ${p.heroImage ? '<img loading="lazy" src="' + p.heroImage + '" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;">' : ''}
+                            ${p.heroImage ? '<img alt="Brand guide hero image" loading="lazy" src="' + p.heroImage + '" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;">' : ''}
 <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
 <div style="font-size: 32px; font-weight: 900; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">${p.title}</div>
                                 ${p.tagline ? '<div style="font-size: 16px; color: rgba(255,255,255,0.8);">' + p.tagline + '</div>' : ''}
@@ -21744,7 +21907,7 @@ function renderBrandGuideEditor() {
 <div style="aspect-ratio: 1/1; border: 2px dashed rgba(255,255,255,0.2); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; background: rgba(255,255,255,0.05);">
 <div style="font-size: 11px; color: rgba(255,255,255,0.6); padding: 16px; background: rgba(255,255,255,0.05); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; text-align: center;">${label}</div>
 <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px; background: #fff;">
-                                        ${p[key] ? '<img loading="lazy" src="' + p[key] + '" style="max-height: 100%; max-width: 100%; object-fit: contain;">' : '<div style="color: #ccc; font-size: 13px;">No logo</div>'}
+                                        ${p[key] ? '<img alt="Brand asset image" loading="lazy" src="' + p[key] + '" style="max-height: 100%; max-width: 100%; object-fit: contain;">' : '<div style="color: #ccc; font-size: 13px;">No logo</div>'}
 </div>
 <div style="padding: 16px; background: rgba(255,255,255,0.05); text-align: center;">
 <input type="file" id="bgLogo${i}Upload" style="display: none;" accept="image/*" onchange="uploadBrandGuideAsset(${p.id}, '${key}', this)">
@@ -21784,7 +21947,7 @@ function renderBrandGuideEditor() {
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
                             ${(p.mockups || []).map((m, i) => `
 <div style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
-<img loading="lazy" src="${m}" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;">
+<img alt="Moodboard reference image" loading="lazy" src="${m}" style="width: 100%; aspect-ratio: 16/9; object-fit: cover;">
 <button onclick="removeBrandGuideMockup(${p.id}, ${i})" style="position: absolute; top: 12px; right: 12px; background: #dc2626; color: #fff; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer;">×</button>
 </div>
                             `).join('')}
@@ -22011,7 +22174,7 @@ async function sendProofToClient(id) {
                     subject: `🎨 Your ${p.title || 'Brand Guide'} Proof is Ready for Review`,
                     html: `<div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">
 <div style="background: linear-gradient(135deg, #e63946, #ff6b6b); padding: 32px; text-align: center;">
-<h1 style="margin: 0; font-size: 24px; color: #fff;">Your Proof is Ready! 🎉</h1>
+<h2 style="margin: 0; font-size: 24px; color: #fff;">Your Proof is Ready! 🎉</h2>
 </div>
 <div style="padding: 32px;">
 <p style="color: #ccc; font-size: 16px;">Hey ${client?.name || 'there'},</p>
@@ -22109,7 +22272,7 @@ function downloadBrandGuidePackage(id) {
 
     const mockupHTML = (p.mockups || []).map(mockup => `
 <div style="margin: 20px 0;">
-<img loading="lazy" src="${mockup}" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+<img alt="Brand mockup preview" loading="lazy" src="${mockup}" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
 </div>
     `).join('');
 
@@ -22299,7 +22462,7 @@ function downloadBrandGuidePackage(id) {
  <div class="container">
         <!-- Hero Section -->
 <div class="hero" style="position: relative;">
-<h1>${brandName}</h1>
+<h2>${brandName}</h2>
             ${p.tagline ? `<p>${p.tagline}</p>` : ''}
 </div>
 
@@ -22340,7 +22503,7 @@ function downloadBrandGuidePackage(id) {
 <div class="typography-item">
 <h3>Headings</h3>
 <div class="typography-preview">
-<h1 style="font-family: '${p.fonts.primary || 'inherit'}', sans-serif;">Aa Bb Cc</h1>
+<h2 style="font-family: '${p.fonts.primary || 'inherit'}', sans-serif;">Aa Bb Cc</h2>
 <p style="font-size: 12px; color: #999;">${p.fonts.primary || 'Primary Font'}</p>
 </div>
 </div>
@@ -22547,7 +22710,7 @@ function previewBrandGuideLogo(input) {
     if (input.files && input.files[0]) {
         const reader = new FileReader();
         reader.onload = e => {
-            document.getElementById('bgLogoPreview').innerHTML = `<img loading="lazy" src="${e.target.result}" style="max-width: 200px; max-height: 100px; object-fit: contain; background: #fff; padding: 12px; border-radius: 8px;">`;
+            document.getElementById('bgLogoPreview').innerHTML = `<img alt="Uploaded primary logo" loading="lazy" src="${e.target.result}" style="max-width: 200px; max-height: 100px; object-fit: contain; background: #fff; padding: 12px; border-radius: 8px;">`;
         };
         reader.readAsDataURL(input.files[0]);
     }
@@ -22557,7 +22720,7 @@ function previewBrandGuideHeroImage(input) {
     if (input.files && input.files[0]) {
         const reader = new FileReader();
         reader.onload = e => {
-            document.getElementById('bgHeroImagePreview').innerHTML = `<img loading="lazy" src="${e.target.result}" style="max-width: 300px; max-height: 150px; object-fit: cover; border-radius: 8px;">`;
+            document.getElementById('bgHeroImagePreview').innerHTML = `<img alt="Uploaded hero image" loading="lazy" src="${e.target.result}" style="max-width: 300px; max-height: 150px; object-fit: cover; border-radius: 8px;">`;
         };
         reader.readAsDataURL(input.files[0]);
     }
@@ -22567,7 +22730,7 @@ function previewBrandGuideSecondaryLogo(input) {
     if (input.files && input.files[0]) {
         const reader = new FileReader();
         reader.onload = e => {
-            document.getElementById('bgSecondaryLogoPreview').innerHTML = `<img loading="lazy" src="${e.target.result}" style="max-width: 150px; max-height: 100px; object-fit: contain; background: #fff; padding: 12px; border-radius: 8px;">`;
+            document.getElementById('bgSecondaryLogoPreview').innerHTML = `<img alt="Uploaded secondary logo" loading="lazy" src="${e.target.result}" style="max-width: 150px; max-height: 100px; object-fit: contain; background: #fff; padding: 12px; border-radius: 8px;">`;
         };
         reader.readAsDataURL(input.files[0]);
     }
@@ -22577,7 +22740,7 @@ function previewBrandGuideIconMark(input) {
     if (input.files && input.files[0]) {
         const reader = new FileReader();
         reader.onload = e => {
-            document.getElementById('bgIconMarkPreview').innerHTML = `<img loading="lazy" src="${e.target.result}" style="max-width: 150px; max-height: 100px; object-fit: contain; background: #fff; padding: 12px; border-radius: 8px;">`;
+            document.getElementById('bgIconMarkPreview').innerHTML = `<img alt="Uploaded icon mark" loading="lazy" src="${e.target.result}" style="max-width: 150px; max-height: 100px; object-fit: contain; background: #fff; padding: 12px; border-radius: 8px;">`;
         };
         reader.readAsDataURL(input.files[0]);
     }
@@ -22751,8 +22914,8 @@ function viewBrandGuide(id) {
 <div class="modal-body" style="max-height: 70vh; overflow-y: auto; background: #0a0a0a;">
                 <!-- Brand Header -->
 <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, ${guide.brandColors?.[0]}22, ${guide.brandColors?.[1]}22); border-radius: 12px; margin-bottom: 24px;">
-                    ${guide.logo ? `<img loading="lazy" src="${guide.logo}" style="max-width: 200px; max-height: 100px; object-fit: contain; margin-bottom: 16px;">` : ''}
-<h1 style="font-family: '${guide.fonts?.primary || 'Playfair Display'}', serif; font-size: 32px; margin-bottom: 8px;">${guide.title}</h1>
+                    ${guide.logo ? `<img alt="Brand guide logo" loading="lazy" src="${guide.logo}" style="max-width: 200px; max-height: 100px; object-fit: contain; margin-bottom: 16px;">` : ''}
+<h2 style="font-family: '${guide.fonts?.primary || 'Playfair Display'}', serif; font-size: 32px; margin-bottom: 8px;">${guide.title}</h2>
                     ${guide.tagline ? `<p style="font-family: '${guide.fonts?.secondary || 'Inter'}', sans-serif; font-size: 16px; opacity: 0.8;">${guide.tagline}</p>` : ''}
 </div>
 
@@ -22802,7 +22965,7 @@ function viewBrandGuide(id) {
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px;">
                         ${guide.assets.map(asset => `
 <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 12px; text-align: center;">
-<img loading="lazy" src="${asset.data}" style="max-width: 100%; max-height: 120px; object-fit: contain; margin-bottom: 8px;">
+<img alt="Brand asset thumbnail" loading="lazy" src="${asset.data}" style="max-width: 100%; max-height: 120px; object-fit: contain; margin-bottom: 8px;">
 <p style="font-size: 12px; opacity: 0.7;">${asset.name}</p>
 </div>
                         `).join('')}
@@ -22835,7 +22998,7 @@ function editBrandGuide(id) {
         document.getElementById('bgFontSecondary').value = guide.fonts?.secondary || 'Inter';
         document.getElementById('bgDescription').value = guide.description || '';
         if (guide.logo) {
-            document.getElementById('bgLogoPreview').innerHTML = `<img loading="lazy" src="${guide.logo}" style="max-width: 200px; max-height: 100px; object-fit: contain; background: #fff; padding: 12px; border-radius: 8px;">`;
+            document.getElementById('bgLogoPreview').innerHTML = `<img alt="Brand guide cover logo" loading="lazy" src="${guide.logo}" style="max-width: 200px; max-height: 100px; object-fit: contain; background: #fff; padding: 12px; border-radius: 8px;">`;
         }
         // Update save button to update instead of create
         const saveBtn = document.querySelector('#brandGuideModal .modal-footer .btn-admin.primary');
@@ -22953,7 +23116,7 @@ function loadAdminMoodboardPanel() {
 
     document.getElementById('adminMoodboardPanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-<h1 style="font-size: 28px; font-weight: 700;">🎨 Moodboards</h1>
+<h2 style="font-size: 28px; font-weight: 700;">🎨 Moodboards</h2>
 <button onclick="showCreateMoodboardModal()" style="padding: 12px 24px; background: linear-gradient(135deg, #ff0000, #cc0000); color: #fff; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 14px;">+ New Moodboard</button>
 </div>
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px;">
@@ -23635,7 +23798,7 @@ function renderMoodboardItems(mb, isPreview) {
             return '<div class="ml-card'+sel+'" data-idx="'+idx+'" style="transform:'+tx+';width:'+w+'px;z-index:'+z+';padding:0;overflow:hidden;">'+
                 rz+
                 '<div class="ml-img-wrap">'+
-                    '<img loading="lazy" src="'+(isIdb?'':escHtml(item.src))+'" data-idb-src="'+escHtml(item.src||'')+'" style="width:100%;display:block;'+(isIdb?'min-height:120px;background:#f0f0f0;':'')+'">'+
+                    '<img alt="Moodboard item" loading="lazy" src="'+(isIdb?'':escHtml(item.src))+'" data-idb-src="'+escHtml(item.src||'')+'" style="width:100%;display:block;'+(isIdb?'min-height:120px;background:#f0f0f0;':'')+'">'+
                 '</div>'+
                 (isPreview ? (item.caption ? '<div style="padding:8px 12px;font-size:12px;color:#555;">'+escHtml(item.caption)+'</div>' : '') :
                 '<textarea class="ml-img-caption" placeholder="Add a caption..." onclick="event.stopPropagation()" onchange="mbUpdateCaption('+idx+',this.value)">'+escHtml(item.caption||'')+'</textarea>')+
@@ -23664,7 +23827,7 @@ function renderMoodboardItems(mb, isPreview) {
             return '<div class="ml-card'+sel+'" data-idx="'+idx+'" style="transform:'+tx+';width:'+w+'px;z-index:'+z+';padding:0;overflow:hidden;">'+
                 rz+
                 '<div class="ml-link-domain">'+
-                    '<img loading="lazy" src="https://www.google.com/s2/favicons?domain='+escHtml(domain)+'&sz=32" style="width:14px;height:14px;border-radius:2px;" onerror="this.style.display=\'none\'">'+
+                    '<img alt="Website favicon" loading="lazy" src="https://www.google.com/s2/favicons?domain='+escHtml(domain)+'&sz=32" style="width:14px;height:14px;border-radius:2px;" onerror="this.style.display=\'none\'">'+
                     '<span>'+escHtml(domain)+'</span>'+
                 '</div>'+
                 '<div class="ml-link-title">'+escHtml(item.title||item.url)+'</div>'+
@@ -24030,7 +24193,7 @@ function searchPexelsImages(mbId) {
             var safeUrl=escHtml(photo.src.medium);
             var safeThumb=escHtml(photo.src.tiny);
             return '<div onclick="addPexelsImage(\''+mbId+'\',\''+safeUrl+'\','+parseInt(photo.width)||0+','+parseInt(photo.height)||0+')" style="cursor:pointer;border-radius:6px;overflow:hidden;border:1px solid #eee;transition:all .15s;aspect-ratio:1;background:#f5f5f5;" onmouseover="this.style.transform=\'scale(1.03)\';this.style.boxShadow=\'0 2px 8px rgba(0,0,0,0.15)\'" onmouseout="this.style.transform=\'none\';this.style.boxShadow=\'none\'">'+
-                '<img loading="lazy" src="'+safeThumb+'" style="width:100%;height:100%;object-fit:cover;display:block;">'+
+                '<img alt="Moodboard thumbnail" loading="lazy" src="'+safeThumb+'" style="width:100%;height:100%;object-fit:cover;display:block;">'+
             '</div>';
         }).join('');
     })
@@ -24189,7 +24352,7 @@ function previewMoodboard(mbId) {
         '<style>.ml-card{position:absolute;background:#fff;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,0.08);user-select:none} .ml-img-wrap{overflow:hidden;border-radius:6px 6px 0 0} .ml-img-wrap img{width:100%;display:block} .ml-note-strip{height:4px;border-radius:6px 6px 0 0} .ml-swatch-color{width:100%;aspect-ratio:1;border-radius:6px 6px 0 0} .ml-swatch-label{padding:6px 10px;font-size:11px;color:#666;font-family:monospace;text-align:center} .ml-link-domain{font-size:10px;color:#999;text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:6px;padding:12px 14px 6px} .ml-link-title{font-size:14px;font-weight:600;color:#1a1a1a;padding:0 14px 6px} .ml-link-url{border-top:1px solid #f0f0f0;padding:8px 14px;font-size:11px} .ml-link-url a{color:#4a90d9;text-decoration:none} .ml-text-card{background:transparent!important;box-shadow:none!important}</style>'+
         '<div style="max-width:1200px;margin:0 auto;padding:40px;">'+
             '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;">'+
-                '<div><h1 style="font-size:28px;font-weight:700;color:#fff;">'+mb.title+'</h1>'+
+                '<div><h2 style="font-size:28px;font-weight:700;color:#fff;">'+mb.title+'</h2>'+
                 '<p style="color:#888;margin-top:4px;">Prepared for '+(client?.name||'Client')+' by New Urban Influence</p></div>'+
                 '<button onclick="this.closest(\'div[style*=fixed]\').remove()" style="padding:10px 20px;background:#333;border:1px solid #555;color:#fff;border-radius:8px;cursor:pointer;">Close</button>'+
             '</div>'+
@@ -24211,7 +24374,7 @@ function loadAdminPaymentsPanel() {
 
     document.getElementById('adminPaymentsPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">💳 Payments</h1>
+<h2 class="panel-title">💳 Payments</h2>
 <p class="panel-subtitle">Track payments, auto-pay schedules, and revenue</p>
 </div>
 
@@ -24514,7 +24677,7 @@ function loadAdminInvoicesPanel(searchTerm = '', statusFilter = '') {
 
     document.getElementById('adminInvoicesPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">📄 Invoices</h1>
+<h2 class="panel-title">📄 Invoices</h2>
 <p class="panel-subtitle">Create, send, and track invoices</p>
 </div>
 
@@ -25207,7 +25370,7 @@ async function sendInvoiceToClient(id) {
                 html: `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
 <div style="background: linear-gradient(135deg, #ff0000, #cc0000); padding: 32px; text-align: center;">
-<h1 style="color: #fff; margin: 0; font-size: 24px;">INVOICE</h1>
+<h2 style="color: #fff; margin: 0; font-size: 24px;">INVOICE</h2>
 <p style="color: rgba(255,255,255,0.8); margin: 8px 0 0; font-size: 14px;">${invoice.invoiceNumber || '#' + invoice.id}</p>
 </div>
 <div style="padding: 32px;">
@@ -25309,7 +25472,7 @@ function loadAdminPayoutsPanel() {
     document.getElementById('adminPayoutsPanel').innerHTML = `
 <div class="panel-header" style="display:flex;justify-content:space-between;align-items:center;">
 <div>
-<h1 class="panel-title">💰 Payouts & Profit</h1>
+<h2 class="panel-title">💰 Payouts & Profit</h2>
 <p class="panel-subtitle">Revenue breakdown, designer payouts, and profit tracking</p>
 </div>
 <button onclick="openPayoutSettingsModal()" style="padding:10px 20px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;">⚙️ Settings</button>
@@ -25556,7 +25719,7 @@ function loadAdminStripePanel() {
 
     document.getElementById('adminStripePanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-<h1 style="font-size: 28px; font-weight: 700;">💎 Stripe Integration</h1>
+<h2 style="font-size: 28px; font-weight: 700;">💎 Stripe Integration</h2>
 <span style="padding: 8px 16px; background: ${stripeSettings.connected ? '#d1fae5' : '#fee2e2'}; color: ${stripeSettings.connected ? '#059669' : '#dc2626'}; border-radius: 8px; font-size: 14px;">
                 ${stripeSettings.connected ? '✓ Connected' : '✗ Not Connected'}
 </span>
@@ -25726,7 +25889,7 @@ function saveIntegrations() {
 function loadAdminIntegrationsPanel() {
     document.getElementById('adminIntegrationsPanel').innerHTML = `
 <div class="panel-header">
-<h1 class="panel-title">🔗 Integrations Hub</h1>
+<h2 class="panel-title">🔗 Integrations Hub</h2>
 <p class="panel-subtitle">Connect your favorite tools and services to automate workflows</p>
 </div>
 
@@ -26127,7 +26290,7 @@ function loadDesignerDashboardPanel() {
     });
 
     document.getElementById('designerDashboardPanel').innerHTML = `
-<h1 style="font-size: 28px; margin-bottom: 24px;">Designer Dashboard</h1>
+<h2 style="font-size: 28px; margin-bottom: 24px;">Designer Dashboard</h2>
 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px;">
 <div style="background: #111; padding: 24px; border-radius: 12px; border: 1px solid #222;">
 <div style="font-size: 32px; font-weight: 700; color: var(--red);">${active.length}</div>
@@ -26176,7 +26339,7 @@ function loadDesignerDashboardPanel() {
 function loadDesignerProjectsPanel() {
     const myProjects = orders.filter(o => o.assignedDesigner === currentUser.id || o.assignedDesignerId === currentUser.id || o.assignedDesigner === currentUser.name);
     document.getElementById('designerMyprojectsPanel').innerHTML = `
-<h1 style="font-size: 28px; margin-bottom: 24px;">My Projects</h1>
+<h2 style="font-size: 28px; margin-bottom: 24px;">My Projects</h2>
         ${myProjects.length > 0 ? myProjects.map(p => {
             const client = clients.find(c => c.id === p.clientId);
             return `<div style="background: #111; padding: 20px; border-radius: 12px; margin-bottom: 12px;">
@@ -26195,7 +26358,7 @@ function loadDesignerProjectsPanel() {
 function loadDesignerAvailablePanel() {
     const available = orders.filter(o => !o.assignedDesigner && o.status !== 'delivered');
     document.getElementById('designerAvailablePanel').innerHTML = `
-<h1 style="font-size: 28px; margin-bottom: 24px;">Available Jobs</h1>
+<h2 style="font-size: 28px; margin-bottom: 24px;">Available Jobs</h2>
 <p style="color: #888; margin-bottom: 24px;">Accept a job to start the 72-hour timer</p>
         ${available.length > 0 ? available.map(p => {
             const client = clients.find(c => c.id === p.clientId);
@@ -26248,7 +26411,7 @@ async function acceptDesignerJob(orderId) {
                     subject: `🎨 Work Started on ${order.projectName}!`,
                     html: `<div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">
 <div style="background: linear-gradient(135deg, #3b82f6, #60a5fa); padding: 32px; text-align: center;">
-<h1 style="margin: 0; font-size: 24px; color: #fff;">Your Project is Underway!</h1>
+<h2 style="margin: 0; font-size: 24px; color: #fff;">Your Project is Underway!</h2>
 </div>
 <div style="padding: 32px;">
 <p style="color: #ccc;">Hey ${client.name}, a designer has started working on <strong>${order.projectName}</strong>. You'll receive proof files for review soon!</p>
@@ -26272,7 +26435,7 @@ async function acceptDesignerJob(orderId) {
 function loadDesignerProofsPanel() {
     const myProjects = orders.filter(o => (o.assignedDesigner === currentUser.id || o.assignedDesignerId === currentUser.id || o.assignedDesigner === currentUser.name) && o.status === 'in_progress');
     document.getElementById('designerProofsPanel').innerHTML = `
-<h1 style="font-size: 28px; margin-bottom: 24px;">Upload Proofs</h1>
+<h2 style="font-size: 28px; margin-bottom: 24px;">Upload Proofs</h2>
 <div style="margin-bottom: 24px;">
 <label style="display: block; margin-bottom: 8px; color: #888;">Select Project</label>
 <select id="proofProjectSelect" onchange="loadProofUploadArea()" style="width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #fff; border-radius: 8px;">
@@ -26363,7 +26526,7 @@ function handleDesignerProofUpload(projectId) {
                         subject: `📤 New Proof Uploaded: ${project?.projectName || 'Project'} (v${version}) by ${currentUser.name}`,
                         html: `<div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">
 <div style="background: linear-gradient(135deg, #e63946, #ff6b6b); padding: 24px; text-align: center;">
-<h1 style="margin: 0; font-size: 20px; color: #fff;">📤 New Proof Ready for Review</h1>
+<h2 style="margin: 0; font-size: 20px; color: #fff;">📤 New Proof Ready for Review</h2>
 </div>
 <div style="padding: 32px;">
 <table style="width: 100%; border-collapse: collapse;">
@@ -26514,7 +26677,7 @@ function loadDesignerMessagesPanel() {
     saveDesignerMessages();
 
     document.getElementById('designerMessagesPanel').innerHTML = `
-<h1 style="font-size: 28px; margin-bottom: 24px;">Messages with Admin</h1>
+<h2 style="font-size: 28px; margin-bottom: 24px;">Messages with Admin</h2>
 <div style="margin-bottom: 24px; display: flex; gap: 12px;">
 <input type="text" id="newMessageInput" placeholder="Type a message to admin..." style="flex: 1; padding: 12px; background: #111; border: 1px solid #333; color: #fff; border-radius: 8px;">
 <button onclick="sendMessageToAdmin()" style="padding: 12px 24px; background: var(--red); color: #fff; border: none; border-radius: 8px; cursor: pointer;">Send</button>
@@ -26567,7 +26730,7 @@ function loadClientDashboard() {
 <div style="max-width: 1200px; margin: 0 auto; padding: 24px;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
 <div>
-<h1 style="font-size: 32px; font-weight: 700;">Welcome back, ${client.name}</h1>
+<h2 style="font-size: 32px; font-weight: 700;">Welcome back, ${client.name}</h2>
 <p style="color: #888;">Manage your projects, invoices, and brand assets</p>
 </div>
 <button onclick="portalLogout()" style="padding: 10px 20px; background: #333; color: #fff; border: none; border-radius: 8px; cursor: pointer;">Sign Out</button>
@@ -26780,7 +26943,7 @@ function showClientNewOrder() {
     document.getElementById('clientPortalContent').innerHTML = `
 <div style="max-width: 800px; margin: 0 auto; padding: 24px;">
 <button onclick="loadClientDashboard()" style="margin-bottom: 24px; padding: 10px 20px; background: #333; color: #fff; border: none; border-radius: 8px; cursor: pointer;">← Back to Dashboard</button>
-<h1 style="font-size: 28px; margin-bottom: 8px;">Start a New Project</h1>
+<h2 style="font-size: 28px; margin-bottom: 8px;">Start a New Project</h2>
 <p style="color: #888; margin-bottom: 32px;">Select a service package or request a custom quote</p>
 
             <!-- Service Packages -->
@@ -26899,7 +27062,7 @@ async function submitClientOrder(e) {
                 to: 'newurbaninfluence@gmail.com',
                 subject: `🆕 New Order from ${client.name}: ${order.projectName}`,
                 html: `<div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #fff; border-radius: 12px; overflow: hidden;">
-<div style="background: var(--red, #e11d48); padding: 32px; text-align: center;"><h1 style="margin: 0; color: #fff;">New Client Order!</h1></div>
+<div style="background: var(--red, #e11d48); padding: 32px; text-align: center;"><h2 style="margin: 0; color: #fff;">New Client Order!</h2></div>
 <div style="padding: 32px;">
 <p style="color: #ccc;">Client <strong>${client.name}</strong> submitted a new order:</p>
 <div style="background: #111; border: 1px solid #333; border-radius: 12px; padding: 24px; margin: 16px 0;">
@@ -26929,7 +27092,7 @@ async function submitClientOrder(e) {
     document.getElementById('clientPortalContent').innerHTML = `
 <div style="max-width: 600px; margin: 80px auto; text-align: center; padding: 24px;">
 <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #10b981, #34d399); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 36px; color: #fff; margin-bottom: 24px;">✓</div>
-<h1 style="font-size: 28px; margin-bottom: 12px;">Order Submitted!</h1>
+<h2 style="font-size: 28px; margin-bottom: 12px;">Order Submitted!</h2>
 <p style="color: #888; font-size: 16px; margin-bottom: 32px;">Your <strong>${order.projectName}</strong> order has been received. We'll confirm details and send your invoice shortly.</p>
 <div style="background: #111; padding: 24px; border-radius: 12px; text-align: left; margin-bottom: 32px;">
 <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span style="color: #888;">Order #</span><span>${order.id}</span></div>
@@ -26949,7 +27112,7 @@ function showClientInvoices() {
     document.getElementById('clientPortalContent').innerHTML = `
 <div style="max-width: 800px; margin: 0 auto; padding: 24px;">
 <button onclick="loadClientDashboard()" style="margin-bottom: 24px; padding: 10px 20px; background: #333; color: #fff; border: none; border-radius: 8px; cursor: pointer;">← Back to Dashboard</button>
-<h1 style="font-size: 28px; margin-bottom: 24px;">My Invoices</h1>
+<h2 style="font-size: 28px; margin-bottom: 24px;">My Invoices</h2>
             ${myInvoices.map(i => `
 <div style="background: #111; padding: 24px; border-radius: 12px; margin-bottom: 16px;">
 <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -27506,7 +27669,7 @@ function generateEmailHTML(template, clientData) {
                     <!-- Header -->
 <tr>
 <td style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 32px 40px; text-align: center;">
-<h1 style="margin: 0; font-size: 28px; font-weight: 800; color: #e63946; letter-spacing: 2px;">NUI</h1>
+<h2 style="margin: 0; font-size: 28px; font-weight: 800; color: #e63946; letter-spacing: 2px;">NUI</h2>
 <p style="margin: 8px 0 0 0; font-size: 11px; color: #888; letter-spacing: 3px; text-transform: uppercase;">New Urban Influence</p>
 </td>
 </tr>
@@ -27609,7 +27772,7 @@ function loadAdminEmailTemplatesPanel() {
 
     document.getElementById('adminEmailmarketingPanel').innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-<h1 style="font-size: 28px; font-weight: 700;">📧 Email Templates</h1>
+<h2 style="font-size: 28px; font-weight: 700;">📧 Email Templates</h2>
 <button onclick="showCreateTemplateModal()" class="btn-cta">+ New Template</button>
 </div>
 
@@ -27977,7 +28140,7 @@ function loadAdminSubscriptionsPanel() {
 <div style="padding: 32px;">
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
 <div>
-<h1 style="font-size: 28px; font-weight: 700; color: #fff; margin: 0;">Subscription Management</h1>
+<h2 style="font-size: 28px; font-weight: 700; color: #fff; margin: 0;">Subscription Management</h2>
 <p style="color: #888; margin-top: 8px;">Manage customer subscriptions and billing plans</p>
 </div>
 <button onclick="showAssignPlanModal(null)" style="background: #e63946; color: #fff; border: none; padding: 12px 24px; border-radius: 12px; cursor: pointer; font-weight: 600; font-size: 14px;">+ Assign Plan</button>

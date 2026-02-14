@@ -32,6 +32,14 @@
         <priority>0.8</priority>
     </url>
 
+    <!-- FAQ Section (anchor on homepage) -->
+    <url>
+        <loc>https://newurbaninfluence.com/#faq</loc>
+        <lastmod>2026-02-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
     <!-- ==================== SERVICE PAGES ==================== -->
     <url>
         <loc>https://newurbaninfluence.com/services/brand-identity-packages-detroit</loc>
