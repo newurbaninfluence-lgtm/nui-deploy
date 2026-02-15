@@ -5059,13 +5059,15 @@ if (_storedPortfolio && _storedPortfolio.length > 0) {
     portfolioData = JSON.parse(JSON.stringify(_defaultPortfolio));
 }
 
-// Lightweight cloud sync — fetch portfolio from Supabase Storage (no SDK needed)
+// Lightweight cloud sync — fetch portfolio from Supabase database via Netlify function
 // This ensures ALL visitors (not just admin users) see real portfolio images
 (function() {
-    var PORTFOLIO_URL = 'https://jcgvkyizoimwbolhfpta.supabase.co/storage/v1/object/public/assets/portfolio/data.json';
-    fetch(PORTFOLIO_URL + '?t=' + Date.now())
+    var SYNC_URL = '/.netlify/functions/sync-data?type=all';
+    fetch(SYNC_URL)
         .then(function(r) { return r.ok ? r.json() : null; })
-        .then(function(cloudData) {
+        .then(function(result) {
+            if (!result || !result.success || !result.syncData) return;
+            var cloudData = result.syncData.portfolio && result.syncData.portfolio.data;
             if (!Array.isArray(cloudData) || cloudData.length === 0) return;
             // Fix any broken image refs using defaults as fallback
             cloudData.forEach(function(item, idx) {
@@ -5080,8 +5082,6 @@ if (_storedPortfolio && _storedPortfolio.length > 0) {
                         }
                     });
                 }
-                // Sync names from defaults
-                if (fallback && item.id === fallback.id) item.name = fallback.name;
             });
             // Only update if cloud data has different images
             var oldImgs = portfolioData.map(function(p) { return p.img; }).join('|');
@@ -5089,7 +5089,6 @@ if (_storedPortfolio && _storedPortfolio.length > 0) {
             if (oldImgs !== newImgs) {
                 portfolioData = cloudData;
                 try { localStorage.setItem('nui_portfolio', JSON.stringify(portfolioData)); } catch(e) {}
-                // Re-render the homepage case study grid
                 if (typeof _refreshHomepageCaseStudies === 'function') {
                     _refreshHomepageCaseStudies();
                 }
