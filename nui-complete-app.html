@@ -1456,6 +1456,38 @@ function triggerOrderDelivered(orderId) {
     saveCommHub();
 
     console.log('✅ Trigger: Delivery notification sent for ' + order.projectName);
+
+    // ── Send print upsell text to client via OpenPhone ──────────────
+    // Build industry-specific print link
+    const industrySlug = (client.industry || '').toLowerCase().replace(/[^a-z]/g, '');
+    const clientSlug = encodeURIComponent(client.name.split(' ')[0]);
+    const printUrl = 'https://newurbaninfluence.com/print?industry=' + industrySlug + '&client=' + clientSlug;
+
+    const printMsg = [
+      'Hey ' + client.name.split(' ')[0] + '! 🎉 Your ' + order.projectName + ' from NUI is done.',
+      '',
+      'Ready to print? We ship anywhere in Michigan overnight for $10.',
+      '',
+      'See your options here: ' + printUrl,
+      '',
+      'Just tap what you need and we handle the rest. — NUI'
+    ].join('\n');
+
+    fetch('/.netlify/functions/send-sms', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to: client.phone,
+        message: printMsg,
+        clientId: client.id
+      })
+    }).then(r => r.json()).then(result => {
+      if (result.success) {
+        console.log('✅ Print upsell SMS sent to ' + client.name + ' (' + client.phone + ')');
+      } else {
+        console.warn('⚠️ Print SMS failed:', result.error);
+      }
+    }).catch(err => console.warn('Print SMS network error:', err.message));
 }
 
 // Trigger: When proof is approved, check payment and enable downloads

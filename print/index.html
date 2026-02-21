@@ -606,7 +606,7 @@
         <label>Notes (optional)</label>
         <textarea id="req-notes" placeholder="Special requests, colors, urgency..."></textarea>
       </div>
-      <button class="submit-btn" onclick="submitRequest()">Send My Request →</button>
+      <button class="submit-btn" id="submit-btn" onclick="submitRequest()">Send My Request →</button>
       <p class="form-note">We'll confirm your order and send a proof before printing. Next day delivery for $10 anywhere in Michigan.</p>
     </div>
     <div class="success-state" id="success-state">
@@ -632,11 +632,7 @@
       btn.classList.add('active');
       const filter = btn.dataset.filter;
       document.querySelectorAll('.product-card').forEach(card => {
-        if (filter === 'all' || card.dataset.cat === filter) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
+        card.classList.toggle('hidden', filter !== 'all' && card.dataset.cat !== filter);
       });
     });
   });
@@ -660,7 +656,45 @@
     if (e.target === document.getElementById('modal')) closeModal();
   });
 
-  function submitRequest() {
+  // ── Industry URL param: pre-filter on load ──────────────────────────
+  const INDUSTRY_FILTER_MAP = {
+    trades:'vehicle', marine:'signs', farming:'signs', manufacturing:'signs',
+    bars:'signs', authors:'cards', apparel:'apparel', tax:'cards',
+    financial:'cards', tech:'cards', events:'signs', comedy:'signs'
+  };
+  const INDUSTRY_LABELS = {
+    trades:'Trades & Contractors', marine:'Marine & Boating', farming:'Farming & Agritourism',
+    manufacturing:'Manufacturing', bars:'Bars & Nightlife', authors:'Authors & Creatives',
+    apparel:'Apparel Brands', tax:'Tax & Financial', financial:'Tax & Financial',
+    tech:'Tech & Startups', events:'Events & Comedy', comedy:'Events & Comedy'
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const industryParam = (params.get('industry') || '').toLowerCase();
+  const clientNameParam = params.get('client') || '';
+
+  if (clientNameParam) {
+    const tag = document.querySelector('.hero-tag');
+    if (tag) tag.textContent = '✓ ' + decodeURIComponent(clientNameParam) + ' — Your Design Is Complete';
+  }
+
+  if (industryParam && INDUSTRY_FILTER_MAP[industryParam]) {
+    const targetFilter = INDUSTRY_FILTER_MAP[industryParam];
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.filter === targetFilter);
+    });
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.classList.toggle('hidden', card.dataset.cat !== targetFilter);
+    });
+    const label = INDUSTRY_LABELS[industryParam];
+    if (label) {
+      const sub = document.querySelector('.hero p');
+      if (sub) sub.textContent = 'We picked the best print products for ' + label + ' businesses. Pick what you need — we handle everything from here.';
+    }
+  }
+
+  // ── Submit → Netlify function ────────────────────────────────────────
+  async function submitRequest() {
     const name = document.getElementById('req-name').value.trim();
     const phone = document.getElementById('req-phone').value.trim();
     const address = document.getElementById('req-address').value.trim();
@@ -672,19 +706,27 @@
       return;
     }
 
-    const subject = encodeURIComponent('NUI Print Request: ' + selectedProduct);
-    const body = encodeURIComponent(
-      'PRINT REQUEST\n\n' +
-      'Product: ' + selectedProduct + '\n' +
-      'Price: ' + selectedPrice + '\n\n' +
-      'Name: ' + name + '\n' +
-      'Phone: ' + phone + '\n' +
-      'Address: ' + address + '\n' +
-      'Qty/Size: ' + qty + '\n' +
-      'Notes: ' + notes
-    );
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
 
-    window.open('mailto:hello@newurbaninfluence.com?subject=' + subject + '&body=' + body);
+    try {
+      await fetch('/.netlify/functions/print-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, phone, address, qty, notes,
+          product: selectedProduct,
+          price: selectedPrice,
+          industry: industryParam || 'general'
+        })
+      });
+    } catch (err) {
+      // Fallback: mailto if function unreachable
+      const subject = encodeURIComponent('NUI Print Request: ' + selectedProduct);
+      const body = encodeURIComponent('Product: ' + selectedProduct + '\nPrice: ' + selectedPrice + '\nName: ' + name + '\nPhone: ' + phone + '\nAddress: ' + address + '\nQty: ' + qty + '\nNotes: ' + notes);
+      window.open('mailto:hello@newurbaninfluence.com?subject=' + subject + '&body=' + body);
+    }
 
     document.getElementById('form-state').style.display = 'none';
     document.getElementById('success-state').classList.add('show');
