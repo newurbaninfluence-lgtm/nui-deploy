@@ -6086,12 +6086,9 @@ function loadPortalView() {
                             <a onclick="showAdminPanel('submissions')" class="admin-nav-link" data-panel="submissions">📩 Submissions</a>
                         </div>
                         <div class="admin-nav-group">
-                            <span class="admin-nav-label">PROJECTS</span>
-                            <a onclick="showAdminPanel('projects')" class="admin-nav-link" data-panel="projects">📂 Project Tracker</a>
-                            <a onclick="showAdminPanel('orders')" class="admin-nav-link" data-panel="orders">📋 Orders</a>
-                            <a onclick="showAdminPanel('proofs')" class="admin-nav-link" data-panel="proofs">✅ Proof Approval</a>
+                            <span class="admin-nWORK</span>
+                            <a onclick="showAdminPanel('orders')" class="admin-nav-link" data-panel="orders">🗂️ Jobs Board</a>
                             <a onclick="showAdminPanel('brandguide')" class="admin-nav-link" data-panel="brandguide">📘 Brand Guide</a>
-                            <a onclick="showAdminPanel('delivery')" class="admin-nav-link" data-panel="delivery">📦 Delivery</a>
                         </div>
                         <div class="admin-nav-group">
                             <span class="admin-nav-label">BILLING</span>
@@ -7605,81 +7602,127 @@ function importCsvClients() {
     alert(`✅ Successfully imported ${newClients.length} client${newClients.length !== 1 ? 's' : ''}!`);
 }
 
-function loadAdminOrdersPanel(searchTerm = '', statusFilter = 'all') {
-    const designersList = JSON.parse(localStorage.getItem('nui_designers')) || [];
+function loadAdminOrdersPanel() {
+    const stageNew      = orders.filter(o => o.status === 'pending' || o.status === 'new' || !o.status);
+    const stageProgress = orders.filter(o => o.status === 'in_progress');
+    const stageReview   = orders.filter(o => o.status === 'review');
+    const stageDone     = orders.filter(o => o.status === 'delivered').slice().reverse().slice(0, 10);
 
-    let filtered = orders;
-    if (searchTerm) {
-        filtered = filtered.filter(o => {
-            const client = clients.find(c => c.id === o.clientId);
-            return (o.service || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-                   (client?.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-                   (o.assignedDesigner || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-                   String(o.id).includes(searchTerm);
-        });
-    }
-    if (statusFilter !== 'all') {
-        if (statusFilter === 'unassigned') {
-            filtered = filtered.filter(o => !o.assignedDesigner && o.status !== 'delivered');
-        } else {
-            filtered = filtered.filter(o => o.status === statusFilter);
-        }
-    }
+    const earned  = orders.filter(o => o.paymentStatus === 'paid').reduce((s, o) => s + (o.estimate || 0), 0);
+    const owed    = orders.filter(o => o.paymentStatus !== 'paid' && o.status !== 'delivered').reduce((s, o) => s + (o.estimate || 0), 0);
 
-    const unassignedOrders = orders.filter(o => !o.assignedDesigner && o.status !== 'delivered').length;
-    const inProgressOrders = orders.filter(o => o.status === 'in_progress').length;
-    const completedOrders = orders.filter(o => o.status === 'delivered').length;
+    function jobCard(o, action) {
+        const client  = clients.find(c => c.id === o.clientId);
+        const name    = client ? client.name : 'Unknown';
+        const days    = o.dueDate ? Math.ceil((new Date(o.dueDate) - new Date()) / 86400000) : null;
+        const dueStr  = days === null ? '' : days < 0 ? \`<span style="color:#ef4444;font-size:12px;">⚠ \${Math.abs(days)}d overdue</span>\`
+                        : days <= 3 ? \`<span style="color:#f59e0b;font-size:12px;">🔥 \${days}d left</span>\`
+                        : \`<span style="color:#888;font-size:12px;">📅 \${days}d left</span>\`;
+        const paid    = o.paymentStatus === 'paid';
 
-    document.getElementById('adminOrdersPanel').innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-            <h1 style="font-size: 28px; font-weight: 700;">📋 Order Tracking</h1>
-            <span style="color: #888;">${filtered.length} of ${orders.length} orders</span>
-        </div>
-
-        <!-- Search, Filter, and Actions -->
-        <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; align-items: center;">
-            <input type="text" id="orderSearch" placeholder="Search by client, service, designer..." value="${searchTerm}"
-                oninput="loadAdminOrdersPanel(this.value, document.getElementById('orderFilter').value)"
-                style="flex: 1; min-width: 200px; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; font-size: 14px; background: #252525; color: #fff;">
-            <select id="orderFilter" onchange="loadAdminOrdersPanel(document.getElementById('orderSearch').value, this.value)" style="padding: 10px 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: #252525; color: #fff;">
-                <option value="all" ${statusFilter === 'all' ? 'selected' : ''}>All Orders</option>
-                <option value="unassigned" ${statusFilter === 'unassigned' ? 'selected' : ''}>Unassigned</option>
-                <option value="in_progress" ${statusFilter === 'in_progress' ? 'selected' : ''}>In Progress</option>
-                <option value="delivered" ${statusFilter === 'delivered' ? 'selected' : ''}>Completed</option>
-            </select>
-            <button onclick="exportOrdersCSV()" style="padding: 10px 16px; background: #333; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; cursor: pointer; color: #fff;">Export CSV</button>
-            <button onclick="showAdminPanel('neworder')" class="btn-cta">+ New Order</button>
-        </div>
-
-        <!-- Order Stats -->
-        <div class="stat-cards" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 32px;">
-            <div class="stat-card"><div class="num">${orders.length}</div><div class="lbl">Total Orders</div></div>
-            <div class="stat-card" style="border-color: #f59e0b;"><div class="num" style="color: #f59e0b;">${unassignedOrders}</div><div class="lbl">Unassigned</div></div>
-            <div class="stat-card" style="border-color: var(--blue);"><div class="num" style="color: var(--blue);">${inProgressOrders}</div><div class="lbl">In Progress</div></div>
-            <div class="stat-card" style="border-color: var(--green);"><div class="num" style="color: var(--green);">${completedOrders}</div><div class="lbl">Completed</div></div>
-        </div>
-
-        <!-- Unassigned Alert -->
-        ${unassignedOrders > 0 ? `
-        <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 16px 24px; border-radius: 12px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <span style="font-size: 24px;">⚠️</span>
-                <div>
-                    <strong style="color: #92400e;">${unassignedOrders} orders need designer assignment</strong>
-                    <p style="font-size: 13px; color: #b45309; margin: 0;">Assign designers to start tracking progress</p>
-                </div>
+        return \`
+        <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:12px;">
+            <div style="font-weight:700;font-size:15px;margin-bottom:4px;">\${o.projectName || 'Untitled'}</div>
+            <div style="font-size:13px;color:#aaa;margin-bottom:8px;">\${name}</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                <span style="font-weight:700;color:#dc2626;font-size:15px;">$\${(o.estimate||0).toLocaleString()}</span>
+                <span style="font-size:11px;padding:3px 8px;border-radius:20px;background:\${paid?'#14532d':'#431407'};color:\${paid?'#86efac':'#fdba74'};">\${paid?'✓ Paid':'Unpaid'}</span>
             </div>
-            <button onclick="showQuickAssignModal()" style="padding: 8px 16px; background: #d97706; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Quick Assign All</button>
-        </div>
-        ` : ''}
+            \${dueStr ? \`<div style="margin-bottom:10px;">\${dueStr}</div>\` : ''}
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                \${action}
+                <button onclick="showInvoice(\${o.id})" style="padding:7px 12px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#aaa;cursor:pointer;font-size:12px;">Invoice</button>
+            </div>
+        </div>\`;
+    }
 
-        <!-- Orders List -->
-        <div id="ordersListContainer">
-            ${filtered.length ? filtered.slice().reverse().map(o => renderOrderCardEnhanced(o, designersList)).join('') : '<p style="color: #888; text-align: center; padding: 40px;">No orders found.</p>'}
+    function col(title, color, cards, emptyMsg) {
+        return \`
+        <div style="flex:1;min-width:220px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+                <div style="width:10px;height:10px;border-radius:50%;background:\${color};"></div>
+                <span style="font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em;">\${title}</span>
+                <span style="margin-left:auto;background:rgba(255,255,255,0.08);padding:2px 8px;border-radius:10px;font-size:12px;">\${cards.length}</span>
+            </div>
+            \${cards.length ? cards : \`<div style="padding:20px;text-align:center;color:#555;font-size:13px;border:1px dashed rgba(255,255,255,0.1);border-radius:10px;">\${emptyMsg}</div>\`}
+        </div>\`;
+    }
+
+    document.getElementById('adminOrdersPanel').innerHTML = \`
+        <!-- Header -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+            <h1 style="font-size:26px;font-weight:700;">🗂️ Jobs Board</h1>
+            <button onclick="showAdminPanel('neworder')" class="btn-cta">+ New Job</button>
         </div>
-    `;
+
+        <!-- Stats bar -->
+        <div style="display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:120px;background:#1a1a1a;border-radius:12px;padding:16px;text-align:center;">
+                <div style="font-size:28px;font-weight:700;">\${orders.length}</div>
+                <div style="font-size:12px;color:#888;margin-top:4px;">Total Jobs</div>
+            </div>
+            <div style="flex:1;min-width:120px;background:#1a1a1a;border-radius:12px;padding:16px;text-align:center;">
+                <div style="font-size:28px;font-weight:700;color:#10b981;">$\${earned.toLocaleString()}</div>
+                <div style="font-size:12px;color:#888;margin-top:4px;">Collected</div>
+            </div>
+            <div style="flex:1;min-width:120px;background:#1a1a1a;border-radius:12px;padding:16px;text-align:center;">
+                <div style="font-size:28px;font-weight:700;color:#f59e0b;">$\${owed.toLocaleString()}</div>
+                <div style="font-size:12px;color:#888;margin-top:4px;">Outstanding</div>
+            </div>
+            <div style="flex:1;min-width:120px;background:#1a1a1a;border-radius:12px;padding:16px;text-align:center;">
+                <div style="font-size:28px;font-weight:700;color:#dc2626;">\${stageNew.length}</div>
+                <div style="font-size:12px;color:#888;margin-top:4px;">Need Action</div>
+            </div>
+        </div>
+
+        <!-- Kanban board -->
+        <div style="display:flex;gap:20px;align-items:flex-start;overflow-x:auto;padding-bottom:20px;">
+            \${col('New', '#6b7280',
+                stageNew.map(o => jobCard(o,
+                    \`<button onclick="advanceJob(\${o.id},'in_progress')" style="padding:7px 14px;background:#dc2626;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">▶ Start</button>\`
+                )).join(''),
+                'No new jobs'
+            )}
+            \${col('In Progress', '#3b82f6',
+                stageProgress.map(o => jobCard(o,
+                    \`<button onclick="advanceJob(\${o.id},'review')" style="padding:7px 14px;background:#3b82f6;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">📤 Send to Review</button>\`
+                )).join(''),
+                'Nothing in progress'
+            )}
+            \${col('Review', '#f59e0b',
+                stageReview.map(o => jobCard(o,
+                    \`<button onclick="markDelivered(\${o.id})" style="padding:7px 14px;background:#10b981;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">✓ Mark Delivered</button>\`
+                )).join(''),
+                'Nothing in review'
+            )}
+            \${col('Delivered', '#10b981',
+                stageDone.map(o => {
+                    const dt = o.deliveredAt ? new Date(o.deliveredAt).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
+                    return jobCard(o,
+                        \`<span style="font-size:12px;color:#10b981;">✓ Delivered \${dt}</span>
+                         <button onclick="resendPrintSMS(\${o.id})" title="Resend print offer SMS" style="padding:7px 12px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#aaa;cursor:pointer;font-size:12px;">📱 Print SMS</button>\`
+                    );
+                }).join(''),
+                'No delivered jobs yet'
+            )}
+        </div>
+    \`;
 }
 
+function advanceJob(id, newStatus) {
+    const o = orders.find(o => o.id === id);
+    if (!o) return;
+    o.status = newStatus;
+    if (newStatus === 'in_progress') o.startedAt = new Date().toISOString();
+    if (newStatus === 'review')      o.sentToReviewAt = new Date().toISOString();
+    saveOrders();
+    loadAdminOrdersPanel();
+}
+
+function resendPrintSMS(id) {
+    triggerOrderDelivered(id);
+    alert('Print offer SMS re-sent.');
+}
 // Export orders to CSV
 function exportOrdersCSV() {
     if (orders.length === 0) {
@@ -8670,14 +8713,7 @@ function markDelivered(id) {
     // Trigger workflow: Send delivery notification
     triggerOrderDelivered(id);
 
-    alert('Order marked as delivered! Client will see notification.');
-    // Refresh the active panel
-    const activePanel = document.querySelector('.admin-panel.active');
-    if (activePanel?.id === 'adminDeliveryPanel') {
-        loadAdminDeliveryPanel();
-    } else {
-        loadAdminOrdersPanel();
-    }
+    loadAdminOrdersPanel();
 }
 
 function viewClientAsAdmin(id) {
