@@ -591,7 +591,7 @@
         "paymentAccepted": "Credit Card, Debit Card, Bank Transfer",
         "priceRange": "$500 - $5000+",
         "knowsAbout": ["Brand Identity Design", "Logo Design", "Graphic Design", "Packaging Design", "Social Media Design", "Print Design", "Banner Design", "Poster Design", "Yard Signs", "Vehicle Magnets", "Business Cards", "Postcards", "Acrylic Signs", "Dibond Signs", "Foam Core Signs", "Vinyl Decal Design", "Signage Design", "Brand Strategy", "Visual Identity Systems", "Digital Marketing"],
-        "slogan": "Build Your Empire. Unapologetically Detroit."
+        "slogan": "Build Your Influence. Unapologetically Detroit."
     }
  </script>
     <!-- WebSite Schema with SearchAction — enables sitelinks search in Google -->
@@ -2810,7 +2810,7 @@ let siteImages = JSON.parse(localStorage.getItem('nui_site_images')) || {
     // CMS Logo Management
     headerLogo: { url: '', alt: 'Header Logo' },
     footerLogo: { url: '', alt: 'Footer Logo' },
-    tagline: 'BUILD YOUR EMPIRE',
+    tagline: 'BUILD YOUR INFLUENCE',
     heroTagline: 'UNAPOLOGETICALLY DETROIT',
     // Page Images
     hero: { url: '', alt: 'Hero Background' },
@@ -3156,7 +3156,7 @@ function updateSiteLogos() {
     // Update hero taglines from CMS
     const heroTitle = document.querySelector('.hero-content h1');
     if (heroTitle && siteImages.tagline) {
-        heroTitle.innerHTML = `BUILD YOUR<br><span style="color: var(--red);">${siteImages.tagline.split(' ').pop() || 'EMPIRE'}</span>`;
+        heroTitle.innerHTML = `BUILD YOUR<br><span style="color: var(--red);">${siteImages.tagline.split(' ').pop() || 'INFLUENCE'}</span>`;
     }
 }
 
@@ -3350,7 +3350,7 @@ function loadHomeView() {
 </div>
 <div class="hero-content">
 <div class="badge">Detroit's Premier Digital Agency</div>
-<h1>BUILD YOUR<br><span style="color: var(--red);">EMPIRE</span></h1>
+<h1>BUILD YOUR<br><span style="color: var(--red);">INFLUENCE</span></h1>
 <p>Strategic branding & digital presence for business owners ready to dominate their market. <span>Your brand is your business. Make it unforgettable.</span></p>
 <div class="hero-buttons">
 <a href="/contact" class="btn-cta" onclick="event.preventDefault(); showView('intake');">Book Strategy Call</a>
@@ -21553,7 +21553,7 @@ function loadAdminSiteImagesPanel() {
 <div>
 <label style="display: block; font-weight: 600; color: var(--admin-text); margin-bottom: 8px;">Site Tagline</label>
 <input type="text" id="siteTagline" value="${siteImages.tagline || ''}"
-                        placeholder="e.g., BUILD YOUR EMPIRE"
+                        placeholder="e.g., BUILD YOUR INFLUENCE"
                         style="width: 100%; padding: 12px 16px; border: 1px solid var(--admin-border); border-radius: 8px; font-size: 14px; background: var(--admin-input-bg); color: var(--admin-text);"
                         onchange="siteImages.tagline = this.value; saveSiteImages();">
 <span style="font-size: 12px; color: var(--admin-text-muted);">Appears in navigation and footer</span>
@@ -27669,7 +27669,7 @@ Waiting on your feedback.`
 
 Quick heads up — your invoice {{invoiceNumber}} for \${{amount}} is coming due.
 
-I know you're busy building your empire, so I wanted to make this easy. Click below to handle it in 30 seconds:
+I know you're busy building your influence, so I wanted to make this easy. Click below to handle it in 30 seconds:
 
 {{paymentLink}}
 
