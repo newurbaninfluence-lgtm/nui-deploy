@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Print Your Brand | New Urban Influence</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --red: #dc2626;
+    --white: #ffffff;
+    --gray: #9ca3af;
+    --card: #111111;
+    --border: #1f1f1f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { height: 40px; width: auto; }
+  .nav-badge {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1px solid var(--red);
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+  .hero {
+    padding: 60px 24px 40px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 8vw, 64px);
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--red); }
+  .hero p {
+    color: var(--gray);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .ship-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--gray);
+  }
+  .ship-badge strong { color: var(--white); }
+  .filter-wrap {
+    padding: 32px 24px 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .filter-wrap::-webkit-scrollbar { display: none; }
+  .filters {
+    display: flex;
+    gap: 10px;
+    min-width: max-content;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  .filter-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--gray);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+  }
+  .grid-wrap {
+    padding: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .product-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s;
+  }
+  .product-card:hover { border-color: #333; }
+  .product-card.hidden { display: none; }
+  .card-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    background: #0d0d0d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+  }
+  .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+  .card-category {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  .card-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .card-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+  }
+  .card-price span {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+  .card-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: opacity 0.2s;
+  }
+  .card-btn:hover { opacity: 0.85; }
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 40px;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--gray);
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .modal h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .modal-product {
+    font-size: 13px;
+    color: var(--red);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: #000;
+    border: 1px solid var(--border);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    padding: 14px 16px;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--red); }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .submit-btn {
+    width: 100%;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px;
+    cursor: pointer;
+    border-radius: 2px;
+    margin-top: 8px;
+    transition: opacity 0.2s;
+  }
+  .submit-btn:hover { opacity: 0.85; }
+  .form-note {
+    font-size: 12px;
+    color: var(--gray);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+  .success-state { display: none; text-align: center; padding: 20px 0; }
+  .success-state.show { display: block; }
+  .success-icon { font-size: 48px; margin-bottom: 16px; }
+  .success-state h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .success-state p { color: var(--gray); font-size: 14px; line-height: 1.6; }
+  .success-state a { color: var(--red); }
+  footer {
+    text-align: center;
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--gray);
+    font-size: 13px;
+  }
+  footer a { color: var(--red); text-decoration: none; }
+  @media (max-width: 600px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .modal { padding: 28px 20px; }
+    .filters { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/"><img class="nav-logo" src="/icons/icon-192.png" alt="New Urban Influence"></a>
+  <span class="nav-badge">Print Services</span>
+</nav>
+
+<div class="hero">
+  <span class="hero-tag">✓ Your Design Is Complete</span>
+  <h1>Now Put It<br><span>To Work</span></h1>
+  <p>Your brand is done — let's get it out in the world. Pick what you need, we handle everything. Printed and shipped to your door.</p>
+  <div class="ship-badge">
+    🚚 <strong>Next Day Delivery</strong> — Anywhere in Michigan for $10
+  </div>
+</div>
+
+<div class="filter-wrap">
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All Products</button>
+    <button class="filter-btn" data-filter="signs">Signs & Banners</button>
+    <button class="filter-btn" data-filter="vehicle">Vehicle & Window</button>
+    <button class="filter-btn" data-filter="cards">Cards & Print</button>
+    <button class="filter-btn" data-filter="apparel">Apparel</button>
+    <button class="filter-btn" data-filter="bundles">Bundles</button>
+  </div>
+</div>
+
+<div class="grid-wrap">
+
+  <div class="section-label">Products</div>
+  <div class="product-grid">
+
+    <div class="product-card" data-cat="signs">
+      <div class="card-img">🪧</div>
+      <div class="card-body">
+        <div class="card-category">Signs</div>
+        <div class="card-name">Yard Signs</div>
+        <div class="card-desc">4mm coroplast with wire stakes. Job sites, promotions, events, and real estate. Double-sided available.</div>
+        <div class="card-footer">
+          <div class="card-price">$83<span>Starting / 10 signs + stakes</span></div>
+          <button class="card-btn" onclick="openModal('Yard Signs (4mm Coro, 10 pack)', '$83')">Request</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="vehicle">
+      <div class="card-img">🚗</div>
+      <div class="card-body">
+        <div class="card-category">Vehicle</div>
+        <div class="card-name">Vehicle Magnets</div>
+        <div class="card-desc">Turn your truck or van into a moving billboard. Removable, reusable. Multiple sizes — pair pricing.</div>
+        <div class="card-footer">
+          <div class="card-price">$30<span>Starting / 18x12" pair</span></div>
+          <button class="card-btn" onclick="openModal('Vehicle Magnets', '$30 starting per pair')">Request</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="signs">
+      <div class="card-img">📢</div>
+      <div class="card-body">
+        <div class="card-category">Banners</div>
+        <div class="card-name">HD Banner</div>
+        <div class="card-desc">Premium vinyl scrim banner. 13oz, 15oz, or 18oz. Events, storefronts, trade shows. Grommets included.</div>
+        <div class="card-footer">
+          <div class="card-price">$25<span>Starting / 2x4 banner</span></div>
+          <button class="card-btn" onclick="openModal('HD Banner', '$25 starting')">Request</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="cards">
+      <div class="card-img">💳</div>
+      <div class="card-body">
+        <div class="card-category">Print</div>
+        <div class="card-name">Business Cards</div>
+        <div class="card-desc">16pt gloss or matte. Double-sided. Never run out. Hand one to every customer, every time.</div>
+        <div class="card-footer">
+          <div class="card-price">$10<span>Starting / 110 cards</span></div>
+          <button class="card-btn" onclick="openModal('Business Cards (110ct)', '$10')">Request</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="vehicle">
+      <div class="card-img">🪟</div>
+      <div class="card-body">
+        <div class="card-category">Window</div>
+        <div class="card-name">Window Cling</div>
+        <div class="card-desc">Stick to any glass. Inside or outside facing. Storefronts, offices, vehicles. Repositionable.</div>
+        <div class="card-footer">
+          <div class="card-price">$43<span>Starting / 12x12"</span></div>
+          <button class="card-btn" onclick="openModal('Window Cling', '$43 starting')">Request</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="signs">
+      <div class="card-img">🎪</div>
+      <div class="card-body">
+        <div class="card-category">Display</div>
+        <div class="card-name">Retractable Stand</div>
+        <div class="card-desc">Professional EconoStand banner display. Sets up in seconds. Trade shows, events, storefronts.</div>
+        <div class="card-footer">
+          <div class="card-price">$225<span>Stand | $350 with banner</span></div>
+          <button class="card-btn" onclick="openModal('Retractable Stand (EconoStand)', '$225 stand / $350 with banner')">Request</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="signs">
+      <div class="card-img">🏢</div>
+      <div class="card-body">
+        <div class="card-category">Rigid</div>
+        <div class="card-name">PVC Signs</div>
+        <div class="card-desc">3mm or 6mm rigid plastic. Clean and professional for storefronts, lobbies, wayfinding, and retail.</div>
+        <div class="card-footer">
+          <div class="card-price">$125<span>Starting / 24x18"</span></div>
+          <button class="card-btn" onclick="openModal('PVC Sign (24x18")', '$125 starting')">Request</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="vehicle">
+      <div class="card-img">🚐</div>
+      <div class="card-body">
+        <div class="card-category">Vehicle</div>
+        <div class="card-name">Vehicle Wrap</div>
+        <div class="card-desc">3M ControlTac premium wrap film. Full or partial. Your van is your best salesperson — let it work.</div>
+        <div class="card-footer">
+          <div class="card-price">$12.48<span>Per sqft — custom quote</span></div>
+          <button class="card-btn" onclick="openModal('Vehicle Wrap', 'Custom quote by vehicle size')">Request Quote</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="cards">
+      <div class="card-img">✨</div>
+      <div class="card-body">
+        <div class="card-category">Premium Cards</div>
+        <div class="card-name">Aluminum Cards</div>
+        <div class="card-desc">Hard aluminum business cards. The card nobody throws away. .025" or .040" thickness. 55 per set.</div>
+        <div class="card-footer">
+          <div class="card-price">$100<span>Starting / 55 cards</span></div>
+          <button class="card-btn" onclick="openModal('Aluminum Hard Cards (55ct)', '$100 starting')">Request</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="signs">
+      <div class="card-img">💨</div>
+      <div class="card-body">
+        <div class="card-category">Outdoor</div>
+        <div class="card-name">Mesh Banner</div>
+        <div class="card-desc">37% airflow perforation. Wind resistant. Construction sites, fence lines, and outdoor events.</div>
+        <div class="card-footer">
+          <div class="card-price">$78<span>Starting / 4x8 banner</span></div>
+          <button class="card-btn" onclick="openModal('Mesh Banner', '$78 starting')">Request</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="apparel">
+      <div class="card-img">👕</div>
+      <div class="card-body">
+        <div class="card-category">Apparel</div>
+        <div class="card-name">DTF Heat Transfer</div>
+        <div class="card-desc">Full color transfers for t-shirts, hats, bags, and more. Bring your blanks or ask us about sourcing.</div>
+        <div class="card-footer">
+          <div class="card-price">$1.25<span>Per linear inch / 22" wide</span></div>
+          <button class="card-btn" onclick="openModal('DTF Heat Transfer', '$1.25/linear inch')">Request</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="signs">
+      <div class="card-img">🖼️</div>
+      <div class="card-body">
+        <div class="card-category">Premium</div>
+        <div class="card-name">Acrylic Sign</div>
+        <div class="card-desc">3/16" rigid acrylic with white underbase. Modern and premium. Offices, storefronts, lobbies.</div>
+        <div class="card-footer">
+          <div class="card-price">$36<span>Starting — custom sizes</span></div>
+          <button class="card-btn" onclick="openModal('Acrylic Sign', '$36 starting')">Request</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Pop-Up Kits — Everything You Need, One Price</div>
+  <div class="product-grid">
+
+    <div class="product-card" data-cat="bundles">
+      <div class="card-img">📦</div>
+      <div class="card-body">
+        <div class="card-category">Bundle</div>
+        <div class="card-name">Starter Kit</div>
+        <div class="card-desc">2x4 HD Banner · 10 yard signs + stakes · 110 business cards · 2 vehicle magnets 18x12". Show up professional from day one.</div>
+        <div class="card-footer">
+          <div class="card-price">$450<span>Full kit, shipped to your door</span></div>
+          <button class="card-btn" onclick="openModal('Pop-Up Starter Kit', '$450')">Request</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="bundles">
+      <div class="card-img">🚀</div>
+      <div class="card-body">
+        <div class="card-category">Bundle</div>
+        <div class="card-name">Standard Kit</div>
+        <div class="card-desc">3x6 HD Banner · 25 yard signs + stakes · 275 business cards · 2 vehicle magnets 24x18" · Retractable stand. Trade show ready.</div>
+        <div class="card-footer">
+          <div class="card-price">$850<span>Full kit, shipped to your door</span></div>
+          <button class="card-btn" onclick="openModal('Pop-Up Standard Kit', '$850')">Request</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="bundles">
+      <div class="card-img">👑</div>
+      <div class="card-body">
+        <div class="card-category">Bundle</div>
+        <div class="card-name">Premium Kit</div>
+        <div class="card-desc">4x8 HD Banner · 50 yard signs + HD stakes · 550 cards · 4 vehicle magnets · Stand · Window cling · Foamcore display. All in.</div>
+        <div class="card-footer">
+          <div class="card-price">$1,500<span>Full kit, shipped to your door</span></div>
+          <button class="card-btn" onclick="openModal('Pop-Up Premium Kit', '$1,500')">Request</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="form-state">
+      <h2>Request Print</h2>
+      <div class="modal-product" id="modal-product-name"></div>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="req-name" placeholder="First and last name">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="req-phone" placeholder="(313) 000-0000">
+      </div>
+      <div class="form-group">
+        <label>Delivery Address</label>
+        <input type="text" id="req-address" placeholder="Street address, city, ZIP">
+      </div>
+      <div class="form-group">
+        <label>Quantity or Size</label>
+        <input type="text" id="req-qty" placeholder="e.g. 25 signs, 24x18 magnet">
+      </div>
+      <div class="form-group">
+        <label>Notes (optional)</label>
+        <textarea id="req-notes" placeholder="Special requests, colors, urgency..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitRequest()">Send My Request →</button>
+      <p class="form-note">We'll confirm your order and send a proof before printing. Next day delivery for $10 anywhere in Michigan.</p>
+    </div>
+    <div class="success-state" id="success-state">
+      <div class="success-icon">✅</div>
+      <h3>Request Sent!</h3>
+      <p>We got it. We'll reach out within a few hours to confirm your order and send a proof before anything prints.<br><br>Questions? Call or text us at <a href="tel:2484878747">(248) 487-8747</a></p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Questions? Call or text <a href="tel:2484878747">(248) 487-8747</a> · <a href="/">newurbaninfluence.com</a></p>
+  <p style="margin-top:8px">Next day delivery anywhere in Michigan · Printed and fulfilled in 24 hours</p>
+</footer>
+
+<script>
+  let selectedProduct = '';
+  let selectedPrice = '';
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.product-card').forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  function openModal(product, price) {
+    selectedProduct = product;
+    selectedPrice = price;
+    document.getElementById('modal-product-name').textContent = product + ' — ' + price;
+    document.getElementById('modal').classList.add('open');
+    document.getElementById('form-state').style.display = 'block';
+    document.getElementById('success-state').classList.remove('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modal').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal')) closeModal();
+  });
+
+  function submitRequest() {
+    const name = document.getElementById('req-name').value.trim();
+    const phone = document.getElementById('req-phone').value.trim();
+    const address = document.getElementById('req-address').value.trim();
+    const qty = document.getElementById('req-qty').value.trim();
+    const notes = document.getElementById('req-notes').value.trim();
+
+    if (!name || !phone) {
+      alert('Please enter your name and phone number.');
+      return;
+    }
+
+    const subject = encodeURIComponent('NUI Print Request: ' + selectedProduct);
+    const body = encodeURIComponent(
+      'PRINT REQUEST\n\n' +
+      'Product: ' + selectedProduct + '\n' +
+      'Price: ' + selectedPrice + '\n\n' +
+      'Name: ' + name + '\n' +
+      'Phone: ' + phone + '\n' +
+      'Address: ' + address + '\n' +
+      'Qty/Size: ' + qty + '\n' +
+      'Notes: ' + notes
+    );
+
+    window.open('mailto:hello@newurbaninfluence.com?subject=' + subject + '&body=' + body);
+
+    document.getElementById('form-state').style.display = 'none';
+    document.getElementById('success-state').classList.add('show');
+  }
+</script>
+</body>
+</html>
