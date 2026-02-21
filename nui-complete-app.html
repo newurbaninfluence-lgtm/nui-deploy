@@ -7608,107 +7608,131 @@ function loadAdminOrdersPanel() {
     const stageReview   = orders.filter(o => o.status === 'review');
     const stageDone     = orders.filter(o => o.status === 'delivered').slice().reverse().slice(0, 10);
 
-    const earned  = orders.filter(o => o.paymentStatus === 'paid').reduce((s, o) => s + (o.estimate || 0), 0);
-    const owed    = orders.filter(o => o.paymentStatus !== 'paid' && o.status !== 'delivered').reduce((s, o) => s + (o.estimate || 0), 0);
+    const earned = orders.filter(o => o.paymentStatus === 'paid').reduce((s, o) => s + (o.estimate || 0), 0);
+    const owed   = orders.filter(o => o.paymentStatus !== 'paid' && o.status !== 'delivered').reduce((s, o) => s + (o.estimate || 0), 0);
 
-    function jobCard(o, action) {
+    function jobCard(o, stageActions) {
         const client  = clients.find(c => c.id === o.clientId);
         const name    = client ? client.name : 'Unknown';
         const days    = o.dueDate ? Math.ceil((new Date(o.dueDate) - new Date()) / 86400000) : null;
-        const dueStr  = days === null ? '' : days < 0 ? \`<span style="color:#ef4444;font-size:12px;">⚠ \${Math.abs(days)}d overdue</span>\`
-                        : days <= 3 ? \`<span style="color:#f59e0b;font-size:12px;">🔥 \${days}d left</span>\`
-                        : \`<span style="color:#888;font-size:12px;">📅 \${days}d left</span>\`;
-        const paid    = o.paymentStatus === 'paid';
+        const dueStr  = days === null ? '' : days < 0
+            ? \`<span style="color:#ef4444;font-size:12px;">⚠ \${Math.abs(days)}d overdue</span>\`
+            : days <= 3
+            ? \`<span style="color:#f59e0b;font-size:12px;">🔥 \${days}d left</span>\`
+            : \`<span style="color:#555;font-size:12px;">📅 \${days}d</span>\`;
+        const paid = o.paymentStatus === 'paid';
+
+        // Brand guide status for this client
+        const bg = proofs.find(p => p.clientId == o.clientId && p.type === 'brandguide');
+        const bgStatus = bg ? bg.status : null;
+        const bgBadge = bgStatus === 'approved'
+            ? \`<span style="font-size:11px;color:#10b981;">✓ Brand Guide Approved</span>\`
+            : bgStatus === 'pending'
+            ? \`<span style="font-size:11px;color:#f59e0b;">⏳ Awaiting Client Approval</span>\`
+            : bgStatus === 'revision_requested'
+            ? \`<span style="font-size:11px;color:#ef4444;">✏ Revision Requested</span>\`
+            : bgStatus === 'delivered'
+            ? \`<span style="font-size:11px;color:#10b981;">✓ Brand Guide Delivered</span>\`
+            : '';
 
         return \`
         <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:12px;">
-            <div style="font-weight:700;font-size:15px;margin-bottom:4px;">\${o.projectName || 'Untitled'}</div>
-            <div style="font-size:13px;color:#aaa;margin-bottom:8px;">\${name}</div>
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-                <span style="font-weight:700;color:#dc2626;font-size:15px;">$\${(o.estimate||0).toLocaleString()}</span>
+            <div style="font-weight:700;font-size:15px;margin-bottom:2px;">\${o.projectName || 'Untitled'}</div>
+            <div style="font-size:13px;color:#888;margin-bottom:10px;">\${name}</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <span style="font-weight:700;color:#dc2626;">$\${(o.estimate||0).toLocaleString()}</span>
                 <span style="font-size:11px;padding:3px 8px;border-radius:20px;background:\${paid?'#14532d':'#431407'};color:\${paid?'#86efac':'#fdba74'};">\${paid?'✓ Paid':'Unpaid'}</span>
             </div>
-            \${dueStr ? \`<div style="margin-bottom:10px;">\${dueStr}</div>\` : ''}
-            <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                \${action}
-                <button onclick="showInvoice(\${o.id})" style="padding:7px 12px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#aaa;cursor:pointer;font-size:12px;">Invoice</button>
+            \${dueStr ? \`<div style="margin-bottom:8px;">\${dueStr}</div>\` : ''}
+            \${bgBadge ? \`<div style="margin-bottom:10px;">\${bgBadge}</div>\` : ''}
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+                \${stageActions}
+                <button onclick="showInvoice(\${o.id})" style="padding:6px 10px;background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#666;cursor:pointer;font-size:12px;">Invoice</button>
             </div>
         </div>\`;
     }
 
     function col(title, color, cards, emptyMsg) {
         return \`
-        <div style="flex:1;min-width:220px;">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
-                <div style="width:10px;height:10px;border-radius:50%;background:\${color};"></div>
-                <span style="font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em;">\${title}</span>
-                <span style="margin-left:auto;background:rgba(255,255,255,0.08);padding:2px 8px;border-radius:10px;font-size:12px;">\${cards.length}</span>
+        <div style="flex:1;min-width:230px;max-width:320px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid \${color}20;">
+                <div style="width:8px;height:8px;border-radius:50%;background:\${color};"></div>
+                <span style="font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#aaa;">\${title}</span>
+                <span style="margin-left:auto;background:rgba(255,255,255,0.06);padding:2px 8px;border-radius:10px;font-size:12px;">\${cards.length}</span>
             </div>
-            \${cards.length ? cards : \`<div style="padding:20px;text-align:center;color:#555;font-size:13px;border:1px dashed rgba(255,255,255,0.1);border-radius:10px;">\${emptyMsg}</div>\`}
+            \${cards.length ? cards : \`<div style="padding:24px 16px;text-align:center;color:#444;font-size:13px;border:1px dashed rgba(255,255,255,0.07);border-radius:10px;">\${emptyMsg}</div>\`}
         </div>\`;
     }
 
+    const newCards      = stageNew.map(o => jobCard(o, \`
+        <button onclick="advanceJob(\${o.id},'in_progress')" style="padding:7px 14px;background:#dc2626;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">▶ Start Job</button>
+        <button onclick="sendMoodboardLink(\${o.id})" style="padding:7px 12px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#aaa;cursor:pointer;font-size:12px;">🎨 Moodboard</button>
+    \`)).join('');
+
+    const progressCards = stageProgress.map(o => jobCard(o, \`
+        <button onclick="openBrandGuideForJob(\${o.id})" style="padding:7px 14px;background:#3b82f6;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">📘 Brand Guide</button>
+        <button onclick="advanceJob(\${o.id},'review')" style="padding:7px 12px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#aaa;cursor:pointer;font-size:12px;">📤 Send to Review</button>
+    \`)).join('');
+
+    const reviewCards   = stageReview.map(o => {
+        const bg = proofs.find(p => p.clientId == o.clientId && p.type === 'brandguide');
+        const approved = bg && bg.status === 'approved';
+        return jobCard(o, \`
+            <button onclick="openBrandGuideForJob(\${o.id})" style="padding:7px 12px;background:transparent;border:1px solid rgba(59,130,246,0.4);border-radius:8px;color:#93c5fd;cursor:pointer;font-size:12px;">📘 View Guide</button>
+            <button onclick="markDelivered(\${o.id})" style="padding:7px 14px;background:#10b981;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;\${!approved?' opacity:0.7;':''}" title="\${!approved?'Brand guide not yet approved':''}">✓ Mark Delivered</button>
+        \`);
+    }).join('');
+
+    const doneCards     = stageDone.map(o => {
+        const dt = o.deliveredAt ? new Date(o.deliveredAt).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
+        return jobCard(o, \`
+            <span style="font-size:12px;color:#10b981;">✓ Done \${dt}</span>
+            <button onclick="resendPrintSMS(\${o.id})" style="padding:6px 10px;background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#666;cursor:pointer;font-size:12px;" title="Resend print offer SMS">📱 Print SMS</button>
+        \`);
+    }).join('');
+
     document.getElementById('adminOrdersPanel').innerHTML = \`
-        <!-- Header -->
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
             <h1 style="font-size:26px;font-weight:700;">🗂️ Jobs Board</h1>
             <button onclick="showAdminPanel('neworder')" class="btn-cta">+ New Job</button>
         </div>
 
-        <!-- Stats bar -->
-        <div style="display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap;">
-            <div style="flex:1;min-width:120px;background:#1a1a1a;border-radius:12px;padding:16px;text-align:center;">
-                <div style="font-size:28px;font-weight:700;">\${orders.length}</div>
-                <div style="font-size:12px;color:#888;margin-top:4px;">Total Jobs</div>
+        <div style="display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:110px;background:#1a1a1a;border-radius:12px;padding:14px;text-align:center;">
+                <div style="font-size:26px;font-weight:700;">\${orders.length}</div>
+                <div style="font-size:11px;color:#666;margin-top:2px;">Total Jobs</div>
             </div>
-            <div style="flex:1;min-width:120px;background:#1a1a1a;border-radius:12px;padding:16px;text-align:center;">
-                <div style="font-size:28px;font-weight:700;color:#10b981;">$\${earned.toLocaleString()}</div>
-                <div style="font-size:12px;color:#888;margin-top:4px;">Collected</div>
+            <div style="flex:1;min-width:110px;background:#1a1a1a;border-radius:12px;padding:14px;text-align:center;">
+                <div style="font-size:26px;font-weight:700;color:#10b981;">$\${earned.toLocaleString()}</div>
+                <div style="font-size:11px;color:#666;margin-top:2px;">Collected</div>
             </div>
-            <div style="flex:1;min-width:120px;background:#1a1a1a;border-radius:12px;padding:16px;text-align:center;">
-                <div style="font-size:28px;font-weight:700;color:#f59e0b;">$\${owed.toLocaleString()}</div>
-                <div style="font-size:12px;color:#888;margin-top:4px;">Outstanding</div>
+            <div style="flex:1;min-width:110px;background:#1a1a1a;border-radius:12px;padding:14px;text-align:center;">
+                <div style="font-size:26px;font-weight:700;color:#f59e0b;">$\${owed.toLocaleString()}</div>
+                <div style="font-size:11px;color:#666;margin-top:2px;">Outstanding</div>
             </div>
-            <div style="flex:1;min-width:120px;background:#1a1a1a;border-radius:12px;padding:16px;text-align:center;">
-                <div style="font-size:28px;font-weight:700;color:#dc2626;">\${stageNew.length}</div>
-                <div style="font-size:12px;color:#888;margin-top:4px;">Need Action</div>
+            <div style="flex:1;min-width:110px;background:#1a1a1a;border-radius:12px;padding:14px;text-align:center;">
+                <div style="font-size:26px;font-weight:700;color:#dc2626;">\${stageNew.length + stageProgress.length}</div>
+                <div style="font-size:11px;color:#666;margin-top:2px;">Active</div>
             </div>
         </div>
 
-        <!-- Kanban board -->
-        <div style="display:flex;gap:20px;align-items:flex-start;overflow-x:auto;padding-bottom:20px;">
-            \${col('New', '#6b7280',
-                stageNew.map(o => jobCard(o,
-                    \`<button onclick="advanceJob(\${o.id},'in_progress')" style="padding:7px 14px;background:#dc2626;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">▶ Start</button>\`
-                )).join(''),
-                'No new jobs'
-            )}
-            \${col('In Progress', '#3b82f6',
-                stageProgress.map(o => jobCard(o,
-                    \`<button onclick="advanceJob(\${o.id},'review')" style="padding:7px 14px;background:#3b82f6;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">📤 Send to Review</button>\`
-                )).join(''),
-                'Nothing in progress'
-            )}
-            \${col('Review', '#f59e0b',
-                stageReview.map(o => jobCard(o,
-                    \`<button onclick="markDelivered(\${o.id})" style="padding:7px 14px;background:#10b981;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">✓ Mark Delivered</button>\`
-                )).join(''),
-                'Nothing in review'
-            )}
-            \${col('Delivered', '#10b981',
-                stageDone.map(o => {
-                    const dt = o.deliveredAt ? new Date(o.deliveredAt).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
-                    return jobCard(o,
-                        \`<span style="font-size:12px;color:#10b981;">✓ Delivered \${dt}</span>
-                         <button onclick="resendPrintSMS(\${o.id})" title="Resend print offer SMS" style="padding:7px 12px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#aaa;cursor:pointer;font-size:12px;">📱 Print SMS</button>\`
-                    );
-                }).join(''),
-                'No delivered jobs yet'
-            )}
+        <!-- Workflow legend -->
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:24px;font-size:12px;color:#555;flex-wrap:wrap;">
+            <span>🎨 Moodboard</span><span>→</span>
+            <span>▶ Start</span><span>→</span>
+            <span>📘 Brand Guide</span><span>→</span>
+            <span>📤 Review</span><span>→</span>
+            <span>✓ Deliver + Print SMS</span>
+        </div>
+
+        <div style="display:flex;gap:20px;align-items:flex-start;overflow-x:auto;padding-bottom:24px;">
+            \${col('New', '#6b7280', newCards, 'No new jobs')}
+            \${col('In Progress', '#3b82f6', progressCards, 'Nothing in progress')}
+            \${col('Review', '#f59e0b', reviewCards, 'Nothing in review')}
+            \${col('Delivered', '#10b981', doneCards, 'No delivered jobs yet')}
         </div>
     \`;
 }
-
 function advanceJob(id, newStatus) {
     const o = orders.find(o => o.id === id);
     if (!o) return;
@@ -7722,6 +7746,78 @@ function advanceJob(id, newStatus) {
 function resendPrintSMS(id) {
     triggerOrderDelivered(id);
     alert('Print offer SMS re-sent.');
+}
+
+// Opens or creates a brand guide tied to this job's client
+function openBrandGuideForJob(orderId) {
+    const order = orders.find(o => o.id === orderId);
+    if (!order) return;
+
+    // Look for existing brand guide for this client
+    const existing = proofs.find(p => p.clientId == order.clientId && p.type === 'brandguide');
+
+    if (existing) {
+        // Open brand guide panel with this guide pre-selected
+        currentBrandGuide = existing.id;
+        showAdminPanel('brandguide');
+    } else {
+        // Auto-create a brand guide for this client and open it
+        const client = clients.find(c => c.id === order.clientId);
+        const newGuide = {
+            id: Date.now(),
+            type: 'brandguide',
+            clientId: order.clientId,
+            orderId: orderId,
+            title: (client ? client.name : 'New') + ' Brand Guide',
+            clientName: client ? client.name : 'Unknown',
+            status: 'draft',
+            brandColors: ['#e63946', '#1d3557', '#f4a261'],
+            fonts: { primary: 'Montserrat', secondary: 'Inter' },
+            tagline: '',
+            revisionCount: 0,
+            comments: [],
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        };
+        proofs.push(newGuide);
+        saveProofs();
+        currentBrandGuide = newGuide.id;
+        showAdminPanel('brandguide');
+    }
+}
+
+// Sends a moodboard link to the client via SMS
+function sendMoodboardLink(orderId) {
+    const order = orders.find(o => o.id === orderId);
+    if (!order) return;
+    const client = clients.find(c => c.id === order.clientId);
+    const clientName = client ? client.name.split(' ')[0] : 'there';
+    const phone = client ? client.phone : null;
+
+    const link = window.location.origin + '/moodboard-app.html?client=' + encodeURIComponent(client ? client.name : '');
+    if (phone) {
+        // Use existing SMS function if available
+        if (typeof sendSMSViaOpenPhone === 'function') {
+            sendSMSViaOpenPhone(phone,
+                'Hey ' + clientName + '! Ready to kick off your brand direction? ' +
+                'Check out your moodboard here and pick the vibe that fits: ' + link
+            );
+            alert('Moodboard link sent to ' + clientName + ' (' + phone + ')');
+        } else {
+            // Fallback: copy to clipboard
+            navigator.clipboard.writeText(link).catch(() => {});
+            alert('Moodboard link (copied to clipboard):
+' + link + '
+
+Send this to ' + clientName + (phone ? ' at ' + phone : '') + '.');
+        }
+    } else {
+        navigator.clipboard.writeText(link).catch(() => {});
+        alert('No phone on file for ' + clientName + '.
+
+Moodboard link copied:
+' + link);
+    }
 }
 // Export orders to CSV
 function exportOrdersCSV() {
@@ -16075,9 +16171,12 @@ function loadAdminBrandGuidePanel() {
     const clientProofs = proofs.filter(p => p.type === 'brandguide');
 
     document.getElementById('adminBrandguidePanel').innerHTML = `
-        <div class="panel-header">
-            <h1 class="panel-title">📘 Brand Guide & Proof System</h1>
-            <p class="panel-subtitle">Create brand guides, manage proofs, and client asset storage</p>
+        <div class="panel-header" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
+            <div>
+                <h1 class="panel-title">📘 Brand Guide</h1>
+                <p class="panel-subtitle">Build, send for approval, and deliver brand packages</p>
+            </div>
+            <button onclick="showAdminPanel('orders')" style="padding:8px 16px;background:transparent;border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#aaa;cursor:pointer;font-size:13px;">← Back to Jobs</button>
         </div>
 
         <!-- Stats -->
