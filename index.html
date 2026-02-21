@@ -3815,7 +3815,7 @@ function loadAboutView() {
 function loadServicesView() {
     document.getElementById('servicesView').innerHTML = `
 <style>
-            .package-section { padding: 0 0 80px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+            .package-section { padding: 0 0 80px 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: opacity 0.3s ease, transform 0.3s ease; }
             .package-image { position: relative; width: 100%; height: 300px; overflow: hidden; margin-bottom: 60px; }
             .package-image img { width: 100%; height: 100%; object-fit: cover; }
             .package-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,59,48,0.4) 0%, rgba(255,59,48,0.2) 50%, rgba(0,0,0,0.9) 100%); }
@@ -3910,6 +3910,32 @@ function loadServicesView() {
                 .deliverable-title { font-size: 15px; }
                 .category-title { font-size: 18px; }
             }
+
+            /* ── Problem Filter System ── */
+            .svc-filter-bar { padding: 48px 24px 32px; max-width: 960px; margin: 0 auto; }
+            .svc-filter-lbl { font-size: 13px; color: var(--red); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 24px; font-family: var(--font-head); }
+            .svc-problems { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            @media(min-width:640px){ .svc-problems { grid-template-columns: repeat(4, 1fr); } }
+            .svc-prob-card { background: #0d0d0d; border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 20px 16px; cursor: pointer; transition: border-color .2s, transform .2s; text-align: left; }
+            .svc-prob-card:hover, .svc-prob-card.active { border-color: var(--red); transform: translateY(-2px); }
+            .prob-icon { font-size: 24px; margin-bottom: 10px; display: block; }
+            .prob-q { font-size: 13px; font-weight: 700; color: #fff; line-height: 1.4; margin-bottom: 6px; font-family: var(--font-head); }
+            .prob-sol { font-size: 11px; color: var(--gray); line-height: 1.5; }
+            .prob-price { font-size: 11px; color: var(--red); margin-top: 8px; font-weight: 700; }
+            .svc-back-btn { display: none; width: 100%; max-width: 960px; margin: 16px auto 0; padding: 14px 24px; background: transparent; border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; color: rgba(255,255,255,0.6); font-size: 13px; cursor: pointer; transition: all .2s; text-align: left; }
+            .svc-back-btn:hover { border-color: var(--red); color: #fff; }
+            .svc-back-btn.visible { display: block; }
+            .pkg-filtered-out { display: none !important; }
+            .logo-only-card { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 40px 32px; max-width: 600px; margin: 0 auto 24px; }
+            .lo-label { font-size: 11px; color: var(--red); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px; }
+            .logo-only-card h3 { font-size: 28px; font-family: var(--font-head); font-weight: 900; color: #fff; margin-bottom: 8px; }
+            .lo-sub { font-size: 13px; color: var(--gray); margin-bottom: 24px; line-height: 1.6; }
+            .logo-only-card ul { list-style: none; padding: 0; margin: 0 0 24px; }
+            .logo-only-card ul li { font-size: 13px; color: rgba(255,255,255,0.75); padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .logo-only-card ul li:before { content: "\2713  "; color: var(--red); }
+            .lo-price-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 24px; }
+            .lo-price { font-size: 42px; font-family: var(--font-head); font-weight: 900; color: #fff; }
+            .lo-price-note { font-size: 12px; color: var(--gray); }
 </style>
 
 <section class="section dark" style="padding-top: 160px; text-align: center;">
@@ -3917,6 +3943,142 @@ function loadServicesView() {
 <p class="section-subtitle">Comprehensive branding solutions designed for product-based and service-based businesses. Every deliverable comes with clear direction on how to use it.</p>
 </section>
 
+<!-- ── PROBLEM FILTER BAR ── -->
+<div class="svc-filter-bar" id="svcFilterBar">
+    <p class="svc-filter-lbl">What&rsquo;s your situation?</p>
+    <div class="svc-problems">
+
+        <button class="svc-prob-card" data-filter="new-business" onclick="filterServices('new-business')">
+            <span class="prob-icon">🌱</span>
+            <p class="prob-q">How do I get my business looking professional?</p>
+            <p class="prob-sol">Start with a logo or full brand kit — everything you need to look legit from day one.</p>
+            <p class="prob-price">From $750</p>
+        </button>
+
+        <button class="svc-prob-card" data-filter="established" onclick="filterServices('established')">
+            <span class="prob-icon">🏪</span>
+            <p class="prob-q">My brand looks outdated — how do I fix it?</p>
+            <p class="prob-sol">Full brand identity rebuild. New look, real positioning, everything consistent.</p>
+            <p class="prob-price">From $4,500</p>
+        </button>
+
+        <button class="svc-prob-card" data-filter="new-business,established" onclick="filterServices('new-business')">
+            <span class="prob-icon">🌐</span>
+            <p class="prob-q">How do I get more customers in Detroit?</p>
+            <p class="prob-sol">Brand + website together. Shows up on Google, converts visitors, builds trust.</p>
+            <p class="prob-price">From $3,500</p>
+        </button>
+
+        <button class="svc-prob-card" data-filter="established,digital" onclick="filterServices('established')">
+            <span class="prob-icon">📈</span>
+            <p class="prob-q">I need more leads — my marketing isn&rsquo;t working.</p>
+            <p class="prob-sol">Sales funnel + email sequence + CRM. Built to capture and convert.</p>
+            <p class="prob-price">From $1,500</p>
+        </button>
+
+        <button class="svc-prob-card" data-filter="established" onclick="filterServices('established')">
+            <span class="prob-icon">📦</span>
+            <p class="prob-q">How do I get my product on shelves or online?</p>
+            <p class="prob-sol">Product brand identity with packaging design, labels, and retail-ready materials.</p>
+            <p class="prob-price">From $5,500</p>
+        </button>
+
+        <button class="svc-prob-card" data-filter="digital" onclick="filterServices('digital')">
+            <span class="prob-icon">📱</span>
+            <p class="prob-q">I have an app idea — where do I start?</p>
+            <p class="prob-sol">MVP to full app build. iOS + Android, auth, admin panel, 6&ndash;8 week delivery.</p>
+            <p class="prob-price">From $12,000</p>
+        </button>
+
+        <button class="svc-prob-card" data-filter="print" onclick="filterServices('print')">
+            <span class="prob-icon">🖨️</span>
+            <p class="prob-q">Where can I get banners, signs, or business cards printed in Michigan?</p>
+            <p class="prob-sol">Design + print handled together. $10 overnight shipping anywhere in Michigan.</p>
+            <p class="prob-price">From $35</p>
+        </button>
+
+        <button class="svc-prob-card" data-filter="all" onclick="filterServices('all')" style="border-style:dashed;">
+            <span class="prob-icon">🔍</span>
+            <p class="prob-q">I&rsquo;m not sure — show me everything.</p>
+            <p class="prob-sol">Browse all packages across branding, web, apps, marketing, and print.</p>
+            <p class="prob-price">All packages</p>
+        </button>
+
+    </div>
+</div>
+<button class="svc-back-btn" id="svcBackBtn" onclick="filterServices('all')">&#8592; Show all packages</button>
+
+
+        <!-- LOGO ONLY: $750 standalone entry product -->
+        <section class="package-section" data-svc-filter="new-business" style="background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%); padding-top: 60px;">
+        <div class="package-header">
+            <div class="package-label">Entry Product</div>
+            <h2 class="package-title">LOGO <span class="red">ONLY</span></h2>
+            <p class="package-subtitle" style="font-size:14px;color:var(--gray);max-width:500px;margin:16px auto 0;line-height:1.7;">You need a logo. Nothing else right now. We deliver a primary mark, an icon version, and every file format so you can use it anywhere, today.</p>
+        </div>
+        <div class="logo-only-card">
+            <div class="lo-label">Standalone Product</div>
+            <h3>LOGO DESIGN</h3>
+            <p class="lo-sub">One strong logo designed to last. No extras &mdash; just a professional mark you own completely.</p>
+            <ul>
+                <li>2 Initial Concepts</li>
+                <li>1 Revision Round</li>
+                <li>Primary Logo + Icon/Mark Version</li>
+                <li>All File Formats: PNG, SVG, PDF</li>
+                <li>Black, White &amp; Color Versions</li>
+                <li>Full Ownership &mdash; 100% Yours</li>
+            </ul>
+            <div class="lo-price-row">
+                <span class="lo-price">$750</span>
+                <span class="lo-price-note">flat rate &middot; 5&ndash;7 day delivery</span>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <button class="btn-package" onclick="startServiceIntake('logo-only')">Get My Logo &#8594;</button>
+                <button class="btn-white" onclick="startServiceIntake('consultation')" style="padding:14px 24px;font-size:14px;">Free Consultation</button>
+            </div>
+            <p style="font-size:11px;color:var(--gray);margin-top:16px;line-height:1.6;">Want the full brand kit later? Your $750 applies as a credit toward the $1,500 Brand Kit.</p>
+        </div>
+        </section>
+
+        <!-- PRINT SECTION: AEO-targeted -->
+        <section class="package-section" data-svc-filter="print" style="background:#050505;display:none;">
+        <div class="package-header">
+            <div class="package-label">Michigan Print &mdash; Overnight Delivery</div>
+            <h2 class="package-title">PRINT <span class="red">MATERIALS</span></h2>
+            <p class="package-subtitle" style="font-size:14px;color:var(--gray);max-width:560px;margin:16px auto 0;line-height:1.7;">Professional print for Michigan businesses. Designed by NUI, fulfilled same-day, shipped overnight anywhere in Michigan for $10. No minimum orders.</p>
+        </div>
+        <div style="max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;padding:0 24px;">
+            <div style="background:#0d0d0d;border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,0.07);">
+                <div style="font-size:24px;margin-bottom:12px;">&#128198;</div>
+                <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">Business Cards</div>
+                <div style="font-size:12px;color:var(--gray);">500 cards, custom design included</div>
+                <div style="font-size:16px;color:var(--red);font-weight:700;margin-top:12px;">From $85</div>
+            </div>
+            <div style="background:#0d0d0d;border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,0.07);">
+                <div style="font-size:24px;margin-bottom:12px;">&#128680;</div>
+                <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">Banners &amp; Signs</div>
+                <div style="font-size:12px;color:var(--gray);">Retractable banners, yard signs, coro</div>
+                <div style="font-size:16px;color:var(--red);font-weight:700;margin-top:12px;">From $120</div>
+            </div>
+            <div style="background:#0d0d0d;border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,0.07);">
+                <div style="font-size:24px;margin-bottom:12px;">&#127914;</div>
+                <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">Pop-Up Kits</div>
+                <div style="font-size:12px;color:var(--gray);">Everything for trade shows and events</div>
+                <div style="font-size:16px;color:var(--red);font-weight:700;margin-top:12px;">From $450</div>
+            </div>
+            <div style="background:#0d0d0d;border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,0.07);">
+                <div style="font-size:24px;margin-bottom:12px;">&#128228;</div>
+                <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">Flyers &amp; Postcards</div>
+                <div style="font-size:12px;color:var(--gray);">Events, promos, direct mail</div>
+                <div style="font-size:16px;color:var(--red);font-weight:700;margin-top:12px;">From $65</div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:40px;padding:0 24px;">
+            <p style="font-size:13px;color:var(--gray);margin-bottom:24px;">$10 overnight shipping anywhere in Michigan. 24-hour production on most items.</p>
+            <button class="btn-package" onclick="showView('print')" style="margin-right:12px;">Browse All Print &#8594;</button>
+            <button class="btn-white" onclick="startServiceIntake('consultation')" style="padding:14px 24px;font-size:14px;">Get a Print Quote</button>
+        </div>
+        </section>
         <!-- BRAND KIT - STARTER PACKAGE -->
 <section class="package-section" style="background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);">
 <div class="package-image">
@@ -4017,7 +4179,7 @@ function loadServicesView() {
 </section>
 
         <!-- PRODUCT BUSINESS BRAND IDENTITY -->
-<section class="package-section" style="background: #050505;">
+<section class="package-section" data-svc-filter="new-business,established" style="background: #050505;">
 <div class="package-image">
 <img loading="lazy" width="1920" height="1200" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1920&q=80" alt="Product Branding" data-service-image="product-brand">
 </div>
@@ -4226,7 +4388,7 @@ function loadServicesView() {
 </section>
 
         <!-- SERVICE BUSINESS BRAND IDENTITY -->
-<section class="package-section" style="background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);">
+<section class="package-section" data-svc-filter="established" style="background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);">
 <div class="package-image">
 <img loading="lazy" width="1920" height="1200" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&q=80" alt="Service Branding" data-service-image="service-brand">
 </div>
@@ -4599,7 +4761,7 @@ function loadServicesView() {
 </section>
 
         <!-- WEBSITE & WEBAPP PACKAGES -->
-<section class="package-section" style="background: #050505;">
+<section class="package-section" data-svc-filter="new-business,established,digital" style="background: #050505;">
 <div class="package-image">
 <img loading="lazy" width="1920" height="1200" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80" alt="Website Development" data-service-image="website">
 </div>
@@ -4698,7 +4860,7 @@ function loadServicesView() {
 </section>
 
         <!-- MOBILE APP PACKAGES -->
-<section class="package-section" style="background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);">
+<section class="package-section" data-svc-filter="digital" style="background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);">
 <div class="package-image">
 <img loading="lazy" width="1920" height="1200" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1920&q=80" alt="Mobile App Development" data-service-image="mobile-app">
 </div>
@@ -4774,7 +4936,7 @@ function loadServicesView() {
 </section>
 
         <!-- SALES FUNNELS & AUTOMATION -->
-<section class="package-section" style="background: #050505;">
+<section class="package-section" data-svc-filter="established,digital" style="background: #050505;">
 <div class="package-image">
 <img loading="lazy" width="1920" height="1200" src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1920&q=80" alt="Sales Funnels Marketing" data-service-image="sales-funnel">
 </div>
@@ -4834,7 +4996,7 @@ function loadServicesView() {
 </section>
 
         <!-- BUILD YOUR OWN PACKAGE -->
-<section class="package-section" style="background: linear-gradient(180deg, #0a0a0a 0%, #080808 100%);">
+<section class="package-section" data-svc-filter="new-business,established,digital" style="background: linear-gradient(180deg, #0a0a0a 0%, #080808 100%);">
 <div class="package-image">
 <img loading="lazy" width="1920" height="1200" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80" alt="Custom Package" data-service-image="custom">
 </div>
@@ -4999,6 +5161,62 @@ function loadServicesView() {
             .selected-service-tag { background: rgba(255,59,48,0.2); border: 1px solid rgba(255,59,48,0.4); color: #fff; font-size: 11px; padding: 8px 14px; border-radius: 6px; font-weight: 600; }
 </style>
 
+
+<script>
+function filterServices(tag) {
+    var sections = document.querySelectorAll('#servicesView .package-section[data-svc-filter]');
+    var backBtn  = document.getElementById('svcBackBtn');
+    var cards    = document.querySelectorAll('.svc-prob-card');
+
+    if (tag === 'all') {
+        // Reset: show all, remove spotlight, hide print section
+        sections.forEach(function(s) {
+            s.style.opacity   = '';
+            s.style.transform = '';
+            s.style.transition = '';
+            s.classList.remove('pkg-filtered-out');
+            if (s.dataset.svcFilter === 'print') { s.style.display = 'none'; }
+            else { s.style.display = ''; }
+        });
+        if (backBtn) { backBtn.classList.remove('visible'); }
+        cards.forEach(function(c) { c.classList.remove('active'); });
+        return;
+    }
+
+    // Spotlight: matching sections full opacity, others dimmed to 30%
+    sections.forEach(function(s) {
+        var filters = (s.dataset.svcFilter || '').split(',').map(function(v){ return v.trim(); });
+        var isMatch = filters.indexOf(tag) !== -1;
+        s.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        s.classList.remove('pkg-filtered-out');
+        if (isMatch) {
+            s.style.display  = '';
+            s.style.opacity  = '1';
+            s.style.transform = 'none';
+        } else {
+            // Keep visible but dimmed — user can still scroll to them
+            s.style.display  = '';
+            s.style.opacity  = '0.28';
+            s.style.transform = 'scale(0.99)';
+        }
+    });
+
+    if (backBtn) { backBtn.classList.add('visible'); }
+    cards.forEach(function(c) { c.classList.toggle('active', c.dataset.filter === tag || c.dataset.filter === tag + ',established' || c.dataset.filter === 'new-business,' + tag); });
+
+    // Scroll to first matching section
+    var first = null;
+    sections.forEach(function(s) {
+        if (!first) {
+            var filters = (s.dataset.svcFilter || '').split(',').map(function(v){ return v.trim(); });
+            if (filters.indexOf(tag) !== -1) { first = s; }
+        }
+    });
+    if (first) {
+        setTimeout(function() { first.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 80);
+    }
+}
+</script>
 <section class="cta-section"><h2>HAVE <span>QUESTIONS?</span></h2><p>Book a free strategy call and we'll help you figure out exactly what your business needs.</p><button class="btn-white" onclick="startServiceIntake('consultation')">Book Free Consultation</button></section>
         ${getFooterHTML()}
     `;
