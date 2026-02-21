@@ -7616,82 +7616,82 @@ function loadAdminOrdersPanel() {
         const name    = client ? client.name : 'Unknown';
         const days    = o.dueDate ? Math.ceil((new Date(o.dueDate) - new Date()) / 86400000) : null;
         const dueStr  = days === null ? '' : days < 0
-            ? \`<span style="color:#ef4444;font-size:12px;">⚠ \${Math.abs(days)}d overdue</span>\`
+            ? `<span style="color:#ef4444;font-size:12px;">⚠ ${Math.abs(days)}d overdue</span>`
             : days <= 3
-            ? \`<span style="color:#f59e0b;font-size:12px;">🔥 \${days}d left</span>\`
-            : \`<span style="color:#555;font-size:12px;">📅 \${days}d</span>\`;
+            ? `<span style="color:#f59e0b;font-size:12px;">🔥 ${days}d left</span>`
+            : `<span style="color:#555;font-size:12px;">📅 ${days}d</span>`;
         const paid = o.paymentStatus === 'paid';
 
         // Brand guide status for this client
         const bg = proofs.find(p => p.clientId == o.clientId && p.type === 'brandguide');
         const bgStatus = bg ? bg.status : null;
         const bgBadge = bgStatus === 'approved'
-            ? \`<span style="font-size:11px;color:#10b981;">✓ Brand Guide Approved</span>\`
+            ? `<span style="font-size:11px;color:#10b981;">✓ Brand Guide Approved</span>`
             : bgStatus === 'pending'
-            ? \`<span style="font-size:11px;color:#f59e0b;">⏳ Awaiting Client Approval</span>\`
+            ? `<span style="font-size:11px;color:#f59e0b;">⏳ Awaiting Client Approval</span>`
             : bgStatus === 'revision_requested'
-            ? \`<span style="font-size:11px;color:#ef4444;">✏ Revision Requested</span>\`
+            ? `<span style="font-size:11px;color:#ef4444;">✏ Revision Requested</span>`
             : bgStatus === 'delivered'
-            ? \`<span style="font-size:11px;color:#10b981;">✓ Brand Guide Delivered</span>\`
+            ? `<span style="font-size:11px;color:#10b981;">✓ Brand Guide Delivered</span>`
             : '';
 
-        return \`
+        return `
         <div style="background:#1a1a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:12px;">
-            <div style="font-weight:700;font-size:15px;margin-bottom:2px;">\${o.projectName || 'Untitled'}</div>
-            <div style="font-size:13px;color:#888;margin-bottom:10px;">\${name}</div>
+            <div style="font-weight:700;font-size:15px;margin-bottom:2px;">${o.projectName || 'Untitled'}</div>
+            <div style="font-size:13px;color:#888;margin-bottom:10px;">${name}</div>
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-                <span style="font-weight:700;color:#dc2626;">$\${(o.estimate||0).toLocaleString()}</span>
-                <span style="font-size:11px;padding:3px 8px;border-radius:20px;background:\${paid?'#14532d':'#431407'};color:\${paid?'#86efac':'#fdba74'};">\${paid?'✓ Paid':'Unpaid'}</span>
+                <span style="font-weight:700;color:#dc2626;">$${(o.estimate||0).toLocaleString()}</span>
+                <span style="font-size:11px;padding:3px 8px;border-radius:20px;background:${paid?'#14532d':'#431407'};color:${paid?'#86efac':'#fdba74'};">${paid?'✓ Paid':'Unpaid'}</span>
             </div>
-            \${dueStr ? \`<div style="margin-bottom:8px;">\${dueStr}</div>\` : ''}
-            \${bgBadge ? \`<div style="margin-bottom:10px;">\${bgBadge}</div>\` : ''}
+            ${dueStr ? '<div style="margin-bottom:8px;">' + dueStr + '</div>' : ''}
+            ${bgBadge ? '<div style="margin-bottom:10px;">' + bgBadge + '</div>' : ''}
             <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
-                \${stageActions}
-                <button onclick="showInvoice(\${o.id})" style="padding:6px 10px;background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#666;cursor:pointer;font-size:12px;">Invoice</button>
+                ${stageActions}
+                <button onclick="showInvoice(${o.id})" style="padding:6px 10px;background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#666;cursor:pointer;font-size:12px;">Invoice</button>
             </div>
-        </div>\`;
+        </div>`;
     }
 
     function col(title, color, cards, emptyMsg) {
-        return \`
+        return `
         <div style="flex:1;min-width:230px;max-width:320px;">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid \${color}20;">
-                <div style="width:8px;height:8px;border-radius:50%;background:\${color};"></div>
-                <span style="font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#aaa;">\${title}</span>
-                <span style="margin-left:auto;background:rgba(255,255,255,0.06);padding:2px 8px;border-radius:10px;font-size:12px;">\${cards.length}</span>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid ${color}20;">
+                <div style="width:8px;height:8px;border-radius:50%;background:${color};"></div>
+                <span style="font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#aaa;">${title}</span>
+                <span style="margin-left:auto;background:rgba(255,255,255,0.06);padding:2px 8px;border-radius:10px;font-size:12px;">${cards.length}</span>
             </div>
-            \${cards.length ? cards : \`<div style="padding:24px 16px;text-align:center;color:#444;font-size:13px;border:1px dashed rgba(255,255,255,0.07);border-radius:10px;">\${emptyMsg}</div>\`}
-        </div>\`;
+            ${cards.length ? cards : '<div style="padding:24px 16px;text-align:center;color:#444;font-size:13px;border:1px dashed rgba(255,255,255,0.07);border-radius:10px;">${emptyMsg}</div>'}
+        </div>`;
     }
 
-    const newCards      = stageNew.map(o => jobCard(o, \`
-        <button onclick="advanceJob(\${o.id},'in_progress')" style="padding:7px 14px;background:#dc2626;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">▶ Start Job</button>
-        <button onclick="sendMoodboardLink(\${o.id})" style="padding:7px 12px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#aaa;cursor:pointer;font-size:12px;">🎨 Moodboard</button>
-    \`)).join('');
+    const newCards      = stageNew.map(o => jobCard(o, `
+        <button onclick="advanceJob(${o.id},'in_progress')" style="padding:7px 14px;background:#dc2626;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">▶ Start Job</button>
+        <button onclick="sendMoodboardLink(${o.id})" style="padding:7px 12px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#aaa;cursor:pointer;font-size:12px;">🎨 Moodboard</button>
+    `)).join('');
 
-    const progressCards = stageProgress.map(o => jobCard(o, \`
-        <button onclick="openBrandGuideForJob(\${o.id})" style="padding:7px 14px;background:#3b82f6;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">📘 Brand Guide</button>
-        <button onclick="advanceJob(\${o.id},'review')" style="padding:7px 12px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#aaa;cursor:pointer;font-size:12px;">📤 Send to Review</button>
-    \`)).join('');
+    const progressCards = stageProgress.map(o => jobCard(o, `
+        <button onclick="openBrandGuideForJob(${o.id})" style="padding:7px 14px;background:#3b82f6;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;">📘 Brand Guide</button>
+        <button onclick="advanceJob(${o.id},'review')" style="padding:7px 12px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#aaa;cursor:pointer;font-size:12px;">📤 Send to Review</button>
+    `)).join('');
 
     const reviewCards   = stageReview.map(o => {
         const bg = proofs.find(p => p.clientId == o.clientId && p.type === 'brandguide');
         const approved = bg && bg.status === 'approved';
-        return jobCard(o, \`
-            <button onclick="openBrandGuideForJob(\${o.id})" style="padding:7px 12px;background:transparent;border:1px solid rgba(59,130,246,0.4);border-radius:8px;color:#93c5fd;cursor:pointer;font-size:12px;">📘 View Guide</button>
-            <button onclick="markDelivered(\${o.id})" style="padding:7px 14px;background:#10b981;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;\${!approved?' opacity:0.7;':''}" title="\${!approved?'Brand guide not yet approved':''}">✓ Mark Delivered</button>
-        \`);
+        return jobCard(o, `
+            <button onclick="openBrandGuideForJob(${o.id})" style="padding:7px 12px;background:transparent;border:1px solid rgba(59,130,246,0.4);border-radius:8px;color:#93c5fd;cursor:pointer;font-size:12px;">📘 View Guide</button>
+            <button onclick="markDelivered(${o.id})" style="padding:7px 14px;background:#10b981;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px;font-weight:600;${!approved?' opacity:0.7;':''}" title="${!approved?'Brand guide not yet approved':''}">✓ Mark Delivered</button>
+        `);
     }).join('');
 
     const doneCards     = stageDone.map(o => {
         const dt = o.deliveredAt ? new Date(o.deliveredAt).toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
-        return jobCard(o, \`
-            <span style="font-size:12px;color:#10b981;">✓ Done \${dt}</span>
-            <button onclick="resendPrintSMS(\${o.id})" style="padding:6px 10px;background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#666;cursor:pointer;font-size:12px;" title="Resend print offer SMS">📱 Print SMS</button>
-        \`);
+        return jobCard(o, `
+            <span style="font-size:12px;color:#10b981;">✓ Done ${dt}</span>
+            <button onclick="resendPrintSMS(${o.id})" style="padding:6px 10px;background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#666;cursor:pointer;font-size:12px;" title="Resend print offer SMS">📱 Print SMS</button>
+        `);
     }).join('');
 
-    document.getElementById('adminOrdersPanel').innerHTML = \`
+    document.getElementById('adminOrdersPanel').innerHTML = `
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
             <h1 style="font-size:26px;font-weight:700;">🗂️ Jobs Board</h1>
             <button onclick="showAdminPanel('neworder')" class="btn-cta">+ New Job</button>
@@ -7699,19 +7699,19 @@ function loadAdminOrdersPanel() {
 
         <div style="display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap;">
             <div style="flex:1;min-width:110px;background:#1a1a1a;border-radius:12px;padding:14px;text-align:center;">
-                <div style="font-size:26px;font-weight:700;">\${orders.length}</div>
+                <div style="font-size:26px;font-weight:700;">${orders.length}</div>
                 <div style="font-size:11px;color:#666;margin-top:2px;">Total Jobs</div>
             </div>
             <div style="flex:1;min-width:110px;background:#1a1a1a;border-radius:12px;padding:14px;text-align:center;">
-                <div style="font-size:26px;font-weight:700;color:#10b981;">$\${earned.toLocaleString()}</div>
+                <div style="font-size:26px;font-weight:700;color:#10b981;">$${earned.toLocaleString()}</div>
                 <div style="font-size:11px;color:#666;margin-top:2px;">Collected</div>
             </div>
             <div style="flex:1;min-width:110px;background:#1a1a1a;border-radius:12px;padding:14px;text-align:center;">
-                <div style="font-size:26px;font-weight:700;color:#f59e0b;">$\${owed.toLocaleString()}</div>
+                <div style="font-size:26px;font-weight:700;color:#f59e0b;">$${owed.toLocaleString()}</div>
                 <div style="font-size:11px;color:#666;margin-top:2px;">Outstanding</div>
             </div>
             <div style="flex:1;min-width:110px;background:#1a1a1a;border-radius:12px;padding:14px;text-align:center;">
-                <div style="font-size:26px;font-weight:700;color:#dc2626;">\${stageNew.length + stageProgress.length}</div>
+                <div style="font-size:26px;font-weight:700;color:#dc2626;">${stageNew.length + stageProgress.length}</div>
                 <div style="font-size:11px;color:#666;margin-top:2px;">Active</div>
             </div>
         </div>
@@ -7726,12 +7726,12 @@ function loadAdminOrdersPanel() {
         </div>
 
         <div style="display:flex;gap:20px;align-items:flex-start;overflow-x:auto;padding-bottom:24px;">
-            \${col('New', '#6b7280', newCards, 'No new jobs')}
-            \${col('In Progress', '#3b82f6', progressCards, 'Nothing in progress')}
-            \${col('Review', '#f59e0b', reviewCards, 'Nothing in review')}
-            \${col('Delivered', '#10b981', doneCards, 'No delivered jobs yet')}
+            ${col('New', '#6b7280', newCards, 'No new jobs')}
+            ${col('In Progress', '#3b82f6', progressCards, 'Nothing in progress')}
+            ${col('Review', '#f59e0b', reviewCards, 'Nothing in review')}
+            ${col('Delivered', '#10b981', doneCards, 'No delivered jobs yet')}
         </div>
-    \`;
+    `;
 }
 function advanceJob(id, newStatus) {
     const o = orders.find(o => o.id === id);
@@ -7806,17 +7806,11 @@ function sendMoodboardLink(orderId) {
         } else {
             // Fallback: copy to clipboard
             navigator.clipboard.writeText(link).catch(() => {});
-            alert('Moodboard link (copied to clipboard):
-' + link + '
-
-Send this to ' + clientName + (phone ? ' at ' + phone : '') + '.');
+            alert('Moodboard link (copied to clipboard):\n' + link + '\n\nSend this to ' + clientName + (phone ? ' at ' + phone : '') + '.');
         }
     } else {
         navigator.clipboard.writeText(link).catch(() => {});
-        alert('No phone on file for ' + clientName + '.
-
-Moodboard link copied:
-' + link);
+        alert('No phone on file for ' + clientName + '.\n\nMoodboard link copied:\n' + link);
     }
 }
 // Export orders to CSV

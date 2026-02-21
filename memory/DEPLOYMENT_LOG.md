@@ -77,3 +77,26 @@ Commit: 695c9c7
 - /locations/hamtramck — not yet created
 - Portal logos still broken
 - Navigation overlap issue on mobile (flagged)
+
+---
+
+## 2026-02-22 — Jobs Board + Agency Workflow Unification
+
+### Completed
+- Admin orders panel rebuilt as unified Jobs Board kanban (4 columns)
+- Columns: New → In Progress → Review → Delivered
+- Moodboard connected: "🎨 Moodboard" button on New jobs — sends SMS link or copies to clipboard
+- Brand Guide connected: "📘 Brand Guide" on In Progress — opens existing or auto-creates for client
+- Review column shows live Brand Guide approval status on card (Approved / Awaiting / Revision)
+- Delivered column: Print SMS resend button
+- Brand Guide panel: "← Back to Jobs" button added
+- Nav simplified: Projects + Proofs + Delivery → collapsed into "🗂️ Jobs Board"
+- Workflow legend displayed on board: Moodboard → Start → Brand Guide → Review → Deliver + Print SMS
+- JS syntax audit: fixed 34 escaped backticks, 3 nested template literals, 2 multiline strings
+- All functions verified: loadAdminOrdersPanel, advanceJob, openBrandGuideForJob, sendMoodboardLink, resendPrintSMS
+- Committed: b1abecf (Jobs Board), pending commit (workflow + syntax fixes)
+
+### Pending
+- git push to deploy
+- Test moodboard link flow with real client
+- Test brand guide auto-create for new client

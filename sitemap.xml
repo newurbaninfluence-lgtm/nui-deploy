@@ -265,4 +265,18 @@
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
+
+    <!-- Portal & Tools -->
+    <url>
+        <loc>https://newurbaninfluence.com/portal</loc>
+        <lastmod>2026-02-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://newurbaninfluence.com/moodboard-app.html</loc>
+        <lastmod>2026-02-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.4</priority>
+    </url>
 </urlset>
